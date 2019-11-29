@@ -1,13 +1,11 @@
 import React from 'react';
-import Counter from './components/Counter'
+import HashRouterModel from './router'
+import './styles/normalize.scss'
 
 const App: React.FC = () => {
     return (
         <div className="App">
-            <h1>React</h1>
-            <div>
-                <Counter/>
-            </div>
+            <HashRouterModel/>
         </div>
     );
 }

@@ -1,8 +1,9 @@
-import {createStore} from 'redux'
+import {createStore,applyMiddleware} from 'redux'
+import ReduxThunk from 'redux-thunk';
 import rootReducers from './reducers'
 
-// @ts-ignore
 const store = createStore(
     rootReducers,
+    applyMiddleware(ReduxThunk)
 )
 export default store;
