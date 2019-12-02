@@ -1,80 +1,26 @@
 import React from "react";
 import {
-    BrowserRouter as Router,
-    Switch,
-    Route,
-    Link,
-    useParams,
-    useRouteMatch
+    HashRouter,
+    Switch
 } from "react-router-dom";
 import {Header} from '../components/layout/header/Header'
+import {Main} from '../components/layout/main/Main'
+import Home from '../views/home'
+import {Design} from '../views/design'
 
 const router = [
-    {path: '/', component: () => import('../views/home')},
-    {path: '/design', component: () => import('../views/design')},
+    {path: '/', name: '首页', component: Home},
+    {path: '/design', name: '设计', component: Design},
 ];
 export default function HashRouterModel() {
     return (
-        <Router>
+        <HashRouter>
             <div>
-                <Header  route={router}/>
+                <Header route={router}/>
                 <Switch>
-                    <Route exact path="/">
-                        <Home/>
-                    </Route>
-                    <Route path="/topics">
-                        <Topics/>
-                    </Route>
+                    <Main route={router}/>
                 </Switch>
             </div>
-        </Router>
-    );
-}
-
-function Home() {
-    return (
-        <div>
-            <h2>Home</h2>
-        </div>
-    );
-}
-
-function Topics() {
-    let {path, url} = useRouteMatch();
-
-    return (
-        <div>
-            <h2>Topics</h2>
-            <ul>
-                <li>
-                    <Link to={`${url}/rendering`}>Rendering with React</Link>
-                </li>
-                <li>
-                    <Link to={`${url}/components`}>Components</Link>
-                </li>
-                <li>
-                    <Link to={`${url}/props-v-state`}>Props v. State</Link>
-                </li>
-            </ul>
-
-            <Switch>
-                <Route exact path={path}>
-                    <h3>Please select a topic.</h3>
-                </Route>
-                <Route path={`${path}/:topicId`}>
-                    <Topic/>
-                </Route>
-            </Switch>
-        </div>
-    );
-}
-
-function Topic() {
-    let {topicId} = useParams();
-
-    return (
-        <div>
-            <h3>{topicId}</h3>
-        </div>
+        </HashRouter>
     );
 }

@@ -1,4 +1,11 @@
+@import "styles";
+@import "~nprogress/nprogress.css";
+
 body, html {
   margin: 0;
   padding: 0;
+}
+
+a {
+  text-decoration: none;
 }
