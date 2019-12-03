@@ -1,0 +1,11 @@
+{
+  "plugins": [
+    "transform-decorators-legacy",
+    [
+      "react-intl",
+      {
+        "messagesDir": "./locale"
+      }
+    ]
+  ]
+}
