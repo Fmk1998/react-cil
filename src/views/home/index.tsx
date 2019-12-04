@@ -2,8 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {RouteComponentProps, withRouter} from 'react-router-dom'
 import {Button} from "@material-ui/core";
-import {queryData} from '../../store/actions/category'
-import {bindActionCreators} from "redux";
+import {queryData} from '../../store/actions/categoryAction'
 
 interface Props extends RouteComponentProps {
     queryData: any
@@ -12,8 +11,16 @@ interface Props extends RouteComponentProps {
 interface State {
 
 }
+
 /* TODO : 装饰器写法还有点问题,不知道怎么解决 */
+
 // @connect(state => state,dispatch => dispatch(queryData()))
+
+// function helloWord(target: any) {
+//     console.log('hello Word!');
+// }
+//
+// @helloWord
 class Home extends React.Component<Props, State> {
     constructor(props: Props) {
         super(props);
@@ -58,4 +65,5 @@ const mapDispatchToProps = (dispatch: any) => {
     }
 }
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Home))
+// export default connect(mapStateToProps, mapDispatchToProps)(Home)
 // export default withRouter(Home)

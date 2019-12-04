@@ -1,21 +1,49 @@
 import React from 'react'
 import {Link} from "react-router-dom";
-import {Button, Typography, Toolbar, AppBar, IconButton} from "@material-ui/core";
-import {AccountCircle} from '@material-ui/icons';
+import {Button, Typography, Toolbar, AppBar, IconButton, Menu, MenuItem} from "@material-ui/core";
+import {AccountCircle, Translate} from '@material-ui/icons';
 
-type Mystate = { value: number }
+interface MyProps {
+    route: any[]
+}
 
-export class Header extends React.Component<{ route: any[] }, Mystate> {
-    constructor(props: any) {
-        super(props);
-        this.state = {
-            value: 0,
-        };
+interface MyState {
+}
+
+const Language = () => {
+    const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+
+    const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+        setAnchorEl(event.currentTarget);
     };
 
-    componentDidMount(): void {
-    }
+    const handleClose = () => {
+        setAnchorEl(null);
+    };
 
+    return (
+        <div>
+            <Button onClick={handleClick} style={{color: "#ffffff"}}>
+                <Translate/>
+                <span>Language</span>
+            </Button>
+            <Menu
+                anchorEl={anchorEl}
+                keepMounted
+                open={Boolean(anchorEl)}
+                onClose={handleClose}
+            >
+                <MenuItem onClick={handleClose}>中文</MenuItem>
+                <MenuItem onClick={handleClose}>English</MenuItem>
+            </Menu>
+        </div>
+    );
+}
+
+export default class Header extends React.Component<MyProps, MyState> {
+    constructor(props: MyProps) {
+        super(props);
+    };
 
     render(): React.ReactNode {
         return (
@@ -31,6 +59,9 @@ export class Header extends React.Component<{ route: any[] }, Mystate> {
                                     <Link to={value.path}>{value.name}</Link>
                                 </Button>
                             ))}
+                        </div>
+                        <div>
+                            <Language/>
                         </div>
                         <div className={"right-menu"}>
                             <IconButton aria-label="profile" color="inherit">

@@ -9,7 +9,7 @@ const persistConfig = {
     key: 'ParaRD',
     storage,
     blacklist: [], // 黑名单
-    whitelist: [] // 白名单
+    whitelist: ['user'] // 白名单
 }
 const persistedReducer = persistReducer(persistConfig, rootReducer)
 
