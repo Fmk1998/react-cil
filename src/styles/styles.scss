@@ -9,4 +9,12 @@
 .right-menu {
   position: absolute;
   right: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* dashboard-layout */
+.dashboard-layout {
+  padding: 1rem;
 }

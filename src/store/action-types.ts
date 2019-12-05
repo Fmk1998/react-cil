@@ -12,3 +12,4 @@ export const APICATEGORY = {
 
 export const LOGIN = 'LOGIN'
 export const REGISTER = 'REGISTER'
+export const SETTING = 'SETTING'

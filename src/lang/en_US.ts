@@ -1,3 +1,4 @@
 export default {
-    "home": "home"
+    "home": "home",
+    "cardDashboard.delete": "delete"
 }

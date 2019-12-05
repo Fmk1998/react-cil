@@ -1,33 +1,31 @@
 import React from 'react';
-import {IntlProvider, FormattedHTMLMessage} from 'react-intl' // 国家化
+import {IntlProvider} from 'react-intl' // 国家化
 import language from './lang'
 import HashRouterModel from './router'
 import './styles/normalize.scss'
-import {FormControl, InputLabel, MenuItem, Select} from "@material-ui/core";
+import {connect} from "react-redux";
 
 interface Props {
-
+    language?: any
 }
 
 interface State {
-    lang: string,
-    val: string
+    setting?: any
+}
+
+const mapPropsToState = (state: State) => {
+    return state.setting
 }
 
 class App extends React.Component<Props, State> {
     constructor(props: Props) {
         super(props)
-        this.state = {
-            lang: navigator.language || 'zh',
-            val: ''
-        }
         this.getLocalMessage = this.getLocalMessage.bind(this)
-        this.handleChange = this.handleChange.bind(this)
     }
 
     getLocalMessage() {
         let msg: object
-        if (this.state.lang === 'zh-CN' || this.state.lang === 'zh') {
+        if (this.props.language === 'zh-CN' || this.props.language === 'zh') {
             msg = language.zh
         } else {
             msg = language.en
@@ -35,33 +33,12 @@ class App extends React.Component<Props, State> {
         return {...msg}
     }
 
-    handleChange(event: React.ChangeEvent<{ value: unknown }>) {
-        const value: any = event.target.value;
-        this.setState({
-            lang: value,
-            val: value
-        })
-    }
-
     render(): React.ReactNode {
-        const {lang, val} = this.state
+        const {language} = this.props;
         return (
             <div className={"App"}>
-                <IntlProvider key="intl" locale={lang} messages={this.getLocalMessage()}>
+                <IntlProvider key="intl" locale={language} messages={this.getLocalMessage()}>
                     <HashRouterModel/>
-                    <FormControl style={{width: "100%"}}>
-                        <InputLabel className={"app-language-select"}>请选择语言</InputLabel>
-                        <Select
-                            value={val}
-                            onChange={this.handleChange}
-                        >
-                            <MenuItem value={"zh"}>中文</MenuItem>
-                            <MenuItem value={"en"}>English</MenuItem>
-                        </Select>
-                    </FormControl>
-                    {/* 国际化测试 */}
-                    <br/>
-                    <FormattedHTMLMessage id={"home"}/>
                 </IntlProvider>
             </div>
         );
@@ -76,4 +53,4 @@ class App extends React.Component<Props, State> {
 //     );
 // }
 
-export default App;
+export default connect(mapPropsToState)(App);
