@@ -5,7 +5,7 @@ import {getCookie} from '../utils/echo'
 /* token */
 NProgress.configure({showSpinner: false});
 
-const token = getCookie(PROJECT);
+let token = getCookie(PROJECT); // cookie拿不到就从本地存储拿
 console.log('token:', token);
 
 axios.interceptors.request.use(function (config) {

@@ -1,4 +1,6 @@
-export const PROJECT = 'PARARD' // 项目的key
+export const PROJECTFIX = 'PARA'
+export const PROJECTEND = 'RD'
+export const PROJECT = `${PROJECTFIX}${PROJECTEND}` // 项目的key
 /* demo */
 export const INCREMENT = 'INCREMENT'
 export const DECREMENT = 'DECREMENT'

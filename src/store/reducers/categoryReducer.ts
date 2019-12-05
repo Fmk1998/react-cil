@@ -1,10 +1,14 @@
 import {APICATEGORY} from '../action-types'
 
-export default function categoryReducer(state = {}, action: any) {
+const initState = {
+    list: []
+};
+export default function categoryReducer(state = initState, action: any) {
     switch (action.type) {
         case APICATEGORY.ADD:
-            console.log('from APICATEGORY')
             return state;
+        case APICATEGORY.QUERY:
+            return Object.assign({}, state, {list: action.payload});
         default:
             return state;
     }

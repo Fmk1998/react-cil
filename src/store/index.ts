@@ -4,12 +4,14 @@ import {composeWithDevTools} from 'redux-devtools-extension';
 import {persistStore, persistReducer} from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
 import rootReducer from './reducers' // 官方写法
+import {PROJECTFIX, PROJECTEND} from './action-types'
 
 const persistConfig = {
-    key: 'ParaRD',
+    keyPrefix: PROJECTFIX,
+    key: PROJECTEND,
     storage,
-    blacklist: [], // 黑名单
-    whitelist: ['user','setting'] // 白名单
+    blacklist: ['_persist'], // 黑名单
+    whitelist: ['user', 'setting'] // 白名单
 }
 const persistedReducer = persistReducer(persistConfig, rootReducer)
 

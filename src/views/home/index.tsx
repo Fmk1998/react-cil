@@ -2,12 +2,16 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {RouteComponentProps, withRouter} from 'react-router-dom'
 import {Grid, Paper} from "@material-ui/core";
-import CardDashboard from '../../components/CardDashboard'
 import {queryData} from '../../store/actions/categoryAction'
 import {FormattedHTMLMessage} from "react-intl";
+import CardDashboard from '../../components/CardDashboard'
+// import GridLayoutComponent from '../../components/GridLayout'
+import CalendarComponent from '../../components/Calendar'
+import SimpleList from "../../components/SimpleList";
 
 interface Props extends RouteComponentProps {
-    queryData: any
+    queryData: any,
+    list: []
 }
 
 interface State {
@@ -36,6 +40,11 @@ class Home extends React.Component<Props, State> {
         super(props);
     }
 
+    /* 组件加载去请求数据回来 */
+    componentWillMount(): void {
+        this.props.queryData()
+    }
+
     render(): React.ReactNode {
         return (
             <div className={"dashboard-layout"}>
@@ -44,17 +53,20 @@ class Home extends React.Component<Props, State> {
                         <CardDashboard content={ApplicationList} title={"chenxi"}/>
                     </Grid>
                     <Grid item xs={4}>
-                        <Paper>xs=4</Paper>
+                        <SimpleList list={this.props.list}/>
                     </Grid>
                 </Grid>
+                {/*<GridLayoutComponent />*/}
+                <br/>
+                <CalendarComponent/>
             </div>
         );
     }
 
 }
 
-const mapStateToProps = (state: object) => {
-    return state
+const mapStateToProps = (state: { category: object }) => {
+    return state.category
 };
 const mapDispatchToProps = (dispatch: any) => {
     return {

@@ -73,7 +73,8 @@ const LoginFormDialog = (props: Props) => {
     useEffect(() => {
         if (user.access_token) {
             // eslint-disable-next-line
-            props.history.push('/home')
+            // props.history.push('/')
+            window.location.href = `/`
         }
     }, [user.access_token])
     return (

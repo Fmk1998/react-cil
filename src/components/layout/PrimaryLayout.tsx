@@ -6,7 +6,7 @@ import Home from "../../views/home";
 import {Design} from "../../views/design";
 
 const router = [
-    {path: '/home', name: '首页', component: Home},
+    {path: '/', name: '首页', component: Home},
     {path: '/design', name: '设计', component: Design},
 ];
 
