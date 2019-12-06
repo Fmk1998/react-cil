@@ -1,9 +1,7 @@
 export const PROJECTFIX = 'PARA'
 export const PROJECTEND = 'RD'
 export const PROJECT = `${PROJECTFIX}${PROJECTEND}` // 项目的key
-/* demo */
-export const INCREMENT = 'INCREMENT'
-export const DECREMENT = 'DECREMENT'
+
 /* Project */
 export const APICATEGORY = {
     ADD: 'ADD',
@@ -15,3 +13,6 @@ export const APICATEGORY = {
 export const LOGIN = 'LOGIN'
 export const REGISTER = 'REGISTER'
 export const SETTING = 'SETTING'
+
+/* taglink */
+export const TAGLINKLIST = 'TAGLINKLIST'

@@ -70,9 +70,9 @@ export default function CardDashboard(props: Props) {
                 avatar={<Avatar sizes={"ms"} aria-label="recipe" className={classes.avatar}>R</Avatar>}
                 action={
                     <div>
-                        <IconButton aria-label="settings" onClick={handleClick}>
-                            <MoreVert/>
-                        </IconButton>
+                        {/*<IconButton aria-label="settings" onClick={handleClick}>*/}
+                            {/*<MoreVert/>*/}
+                        {/*</IconButton>*/}
                         <Menu
                             anchorEl={anchorEl}
                             keepMounted
