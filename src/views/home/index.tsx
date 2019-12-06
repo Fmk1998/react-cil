@@ -53,12 +53,12 @@ class Home extends React.Component<Props, State> {
                         <CardDashboard content={ApplicationList} title={"chenxi"}/>
                     </Grid>
                     <Grid item xs={4}>
-                        <SimpleList list={this.props.list}/>
+                        <CardDashboard content={<SimpleList list={this.props.list}/>} title={"分类"}/>
                     </Grid>
                 </Grid>
                 {/*<GridLayoutComponent />*/}
-                <br/>
-                <CalendarComponent/>
+                {/*<br/>*/}
+                {/*<CalendarComponent/>*/}
             </div>
         );
     }

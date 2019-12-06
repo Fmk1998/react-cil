@@ -91,7 +91,7 @@ export default function CardDashboard(props: Props) {
             <CardContent>
                 {typeof props.content === "function"
                     ? <Component/>
-                    : <Typography paragraph>{props.content}</Typography>
+                    : <div>{props.content}</div>
                 }
             </CardContent>
             {props.showAction
