@@ -1,5 +1,5 @@
 import React from 'react';
-import {IntlProvider} from 'react-intl' // 国家化
+import {IntlProvider} from 'react-intl' // 国际化
 import language from './lang'
 import HashRouterModel from './router'
 import './styles/normalize.scss'

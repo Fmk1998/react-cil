@@ -15,4 +15,7 @@ export const REGISTER = 'REGISTER'
 export const SETTING = 'SETTING'
 
 /* taglink */
-export const TAGLINKLIST = 'TAGLINKLIST'
+export const TAGLINK = {
+    LIST: 'LIST',
+    QUERY: 'QUERY'
+}

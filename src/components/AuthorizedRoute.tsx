@@ -26,7 +26,7 @@ class AuthorizedRoute extends React.Component<Props, State> {
         }
         return (
             <Route {...rest} render={props => {
-                return token
+                return !token
                     ? <Component {...props} />
                     : <Redirect to="/login"/>
             }}/>
