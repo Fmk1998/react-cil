@@ -3,7 +3,7 @@ import {Link} from "react-router-dom";
 import {Button, Typography, Toolbar, AppBar, IconButton, Menu, MenuItem} from "@material-ui/core";
 import {AccountCircle, Translate} from '@material-ui/icons';
 import {useDispatch} from "react-redux";
-import {SETTING} from '../../../store/action-types'
+import {LOGINOUT, SETTING} from '../../../store/action-types'
 
 interface MyProps {
     route: any[]
@@ -46,6 +46,37 @@ const Language = () => {
     );
 }
 
+const Profile = () => {
+    const dispatch = useDispatch();
+    const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null)
+    const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+        setAnchorEl(event.currentTarget)
+    }
+    const handleClose = () => {
+        setAnchorEl(null);
+    }
+
+    const loginOut =() => {
+        dispatch({type: LOGINOUT})
+    }
+
+    return (
+        <div>
+            <IconButton aria-label="profile" color="inherit" onClick={handleClick}>
+                <AccountCircle/>
+            </IconButton>
+            <Menu
+                anchorEl={anchorEl}
+                keepMounted
+                open={Boolean(anchorEl)}
+                onClose={handleClose}
+            >
+                <MenuItem onClick={loginOut}>LoginOut</MenuItem>
+            </Menu>
+        </div>
+    )
+}
+
 export default class Header extends React.Component<MyProps, MyState> {
     constructor(props: MyProps) {
         super(props);
@@ -68,9 +99,7 @@ export default class Header extends React.Component<MyProps, MyState> {
                         </div>
                         <div className={"right-menu"}>
                             <Language/>
-                            <IconButton aria-label="profile" color="inherit">
-                                <AccountCircle/>
-                            </IconButton>
+                            <Profile/>
                         </div>
                     </Toolbar>
                 </AppBar>

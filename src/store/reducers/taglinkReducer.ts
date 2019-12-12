@@ -1,14 +1,14 @@
 import {TAGLINK} from '../action-types'
 
 const initState = {
-    list: []
+    tagList: []
 };
 export default function tagLinkReducer(state = initState, action: any) {
     switch (action.type) {
         case TAGLINK.LIST:
-            return state;
+            return Object.assign({}, state, {tagList: action.payload});
         case TAGLINK.QUERY:
-            return Object.assign({}, state, {list: action.payload});
+            return Object.assign({}, state);
         default:
             return state;
     }

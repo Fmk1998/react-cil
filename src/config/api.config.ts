@@ -1,5 +1,6 @@
 export default {
-    preview: 'http://192.168.2.94:3000', // 回显地址
+    // preview: 'http://192.168.2.94:3000', // chenxi本地
+    preview: 'http://192.168.2.85:13000', // 服务器
     login: '/api/login', // login register
     register: '/api/register', // register
     profile: '/api/profile', // profile

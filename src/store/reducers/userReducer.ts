@@ -1,10 +1,11 @@
 import {
     PROJECT,
     LOGIN,
-    REGISTER
+    REGISTER,
+    LOGINOUT
 } from '../action-types'
 import {
-    setCookie
+    setCookie, removeCookie
 } from '../../utils/echo'
 
 const initState: object = {}
@@ -17,6 +18,9 @@ export default function userReducer(state = initState, action: any) {
         case REGISTER:
             console.log('registerReducer ======>')
             return state;
+        case LOGINOUT:
+            removeCookie(PROJECT);
+            return Object.assign({}, state, {user: null, access_token: null})
         default:
             return state;
     }
