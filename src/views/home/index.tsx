@@ -31,7 +31,7 @@ class Home extends React.Component<Props, State> {
 
     render(): React.ReactNode {
         return (
-            <div className={"dashboard-layout"}>
+            <div className={"dashboard-layout"} style={{padding: '25px'}}>
                 <Grid container spacing={3}>
                     <Grid item xs={8}>
                         <CardDashboard content={taglinkList} title={"应用列表"}/>

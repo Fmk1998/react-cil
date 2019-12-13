@@ -56,7 +56,7 @@ function ListItem(props: any) {
     const list = tagList.map((item: any, index: any) =>
         <div key={item.tag} className="tagList">
             <div className="tagName">
-                <i style={{backgroundImage: `${color[index].color}`}}></i>
+                <i style={{backgroundImage: `${color[index%color.length].color}`}}></i>
                 {item.tag}
             </div>
             <Tags tag={item.list}></Tags>
@@ -73,7 +73,7 @@ function Tags(props: any) {
     const tag = tags.map((item: any) =>
         <li key={item.id}>
             {item.icon ? (
-                <Avatar src={item.icon} style={{margin: '0 auto', borderRadius: '5px'}}></Avatar>
+                <Avatar src={`${JSON.parse(item.icon)[0].value}.png`} style={{margin: '0 auto', borderRadius: '5px'}}></Avatar>
             ) : (
                 <Avatar style={{
                     margin: '0 auto',

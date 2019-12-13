@@ -50,9 +50,6 @@ export default function CardDashboard(props: Props) {
     const classes = useStyles();
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
     const [expanded, setExpanded] = React.useState(false);
-    const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-        setAnchorEl(event.currentTarget);
-    };
     const handleExpandClick = () => {
         setExpanded(!expanded);
     };
@@ -67,12 +64,8 @@ export default function CardDashboard(props: Props) {
     return (
         <Card className={classes.card}>
             <CardHeader
-                avatar={<Avatar sizes={"ms"} aria-label="recipe" className={classes.avatar}>R</Avatar>}
                 action={
                     <div>
-                        {/*<IconButton aria-label="settings" onClick={handleClick}>*/}
-                            {/*<MoreVert/>*/}
-                        {/*</IconButton>*/}
                         <Menu
                             anchorEl={anchorEl}
                             keepMounted
