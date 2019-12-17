@@ -7,7 +7,7 @@ import {FormattedHTMLMessage} from "react-intl";
 import CardDashboard from '../../components/CardDashboard'
 // import GridLayoutComponent from '../../components/GridLayout'
 import CalendarComponent from '../../components/Calendar'
-import SimpleList from "../../components/SimpleList";
+import SimpleList from "../../components/common/Task/SimpleList";
 import taglinkList from '../../components/common/Taglink/Taglink'
 
 interface Props extends RouteComponentProps {
