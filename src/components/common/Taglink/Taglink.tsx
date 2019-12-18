@@ -2,6 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {RouteComponentProps, withRouter} from 'react-router-dom'
 import Avatar from '@material-ui/core/Avatar'
+import API from '../../../config/api.config'
 
 import {queryData} from '../../../store/actions/taglinkAction'
 import {groupBy} from 'lodash'
@@ -73,7 +74,7 @@ function Tags(props: any) {
     const tag = tags.map((item: any) =>
         <li key={item.id}>
             {item.icon ? (
-                <Avatar src={`${JSON.parse(item.icon)[0].value}.png`} style={{margin: '0 auto', borderRadius: '5px'}}></Avatar>
+                <Avatar src={`${API.preview}/${JSON.parse(item.icon)[0].value}`} style={{margin: '0 auto', borderRadius: '5px'}}></Avatar>
             ) : (
                 <Avatar style={{
                     margin: '0 auto',

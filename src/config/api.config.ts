@@ -14,5 +14,6 @@ export default {
     single: '/api/upload/single', // 单文件
     arr: '/api/upload/arr', // 数组文件
     multi: '/api/upload/multi', // 多文件
-    any: '/api/upload/any' //任何类型
+    any: '/api/upload/any', //任何类型
+    todo: '/api/todo' // 任务列表
 }

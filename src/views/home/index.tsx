@@ -37,16 +37,12 @@ class Home extends React.Component<Props, State> {
                         <CardDashboard content={taglinkList} title={"应用列表"}/>
                     </Grid>
                     <Grid item xs={4}>
-                        <CardDashboard content={<SimpleList list={this.props.list}/>} title={"分类"}/>
+                        <CardDashboard content={<SimpleList list={this.props.list}/>} title={"任务中心"}/>
                     </Grid>
                 </Grid>
-                {/*<GridLayoutComponent />*/}
-                {/*<br/>*/}
-                {/*<CalendarComponent/>*/}
             </div>
         );
     }
-
 }
 
 const mapStateToProps = (state: { category: object }) => {
