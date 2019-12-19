@@ -47,12 +47,12 @@ class taglinkList extends React.Component<Props, State> {
 function ListItem(props: any) {
     const tagList = props.list;
     const color = [
-        {color: 'linear-gradient(45deg, #ff9a9e 0%, #fad0c4 99%, #fad0c4 100%)'},
-        {color: 'linear-gradient(to top, #a18cd1 0%, #fbc2eb 100%)'},
-        {color: 'linear-gradient(to top, #fbc2eb 0%, #a6c1ee 100%)'},
-        {color: 'linear-gradient(to right, #fa709a 0%, #fee140 100%)'},
-        {color: 'linear-gradient(to right, #fa709a 0%, #fee140 100%)'},
-        {color: 'linear-gradient(to top, #feada6 0%, #f5efef 100%)'}
+        {color: 'linear-gradient(120deg, #f093fb 0%, #f5576c 100%)'},
+        {color: 'linear-gradient(to right, #f83600 0%, #f9d423 100%)'},
+        {color: 'linear-gradient(to top, #0ba360 0%, #3cba92 100%)'},
+        {color: 'linear-gradient(to top, #ff0844 0%, #ffb199 100%)'},
+        {color: 'linear-gradient(to top, #f77062 0%, #fe5196 100%)'},
+        {color: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)'}
     ]
     const list = tagList.map((item: any, index: any) =>
         <div key={item.tag} className="tagList">
@@ -74,10 +74,10 @@ function Tags(props: any) {
     const tag = tags.map((item: any) =>
         <li key={item.id}>
             {item.icon ? (
-                <Avatar src={`${API.preview}/${JSON.parse(item.icon)[0].value}`} style={{margin: '0 auto', borderRadius: '5px'}}></Avatar>
+                <Avatar src={`${API.preview}/${JSON.parse(item.icon)[0].value}`} style={{margin: '5px auto', borderRadius: '5px'}}></Avatar>
             ) : (
                 <Avatar style={{
-                    margin: '0 auto',
+                    margin: '5px auto',
                     borderRadius: '5px',
                     backgroundColor: '#56a9ff'
                 }}>{item.name.substring(0, 1).toUpperCase()}</Avatar>

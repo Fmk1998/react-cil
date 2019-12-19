@@ -6,13 +6,15 @@ import {
     ListItem,
     ListItemAvatar,
     ListItemText,
+    ListItemSecondaryAction,
     ExpansionPanel,
     ExpansionPanelDetails,
     ExpansionPanelSummary,
     Typography
 } from "@material-ui/core";
-import {ExpandMoreSharp,PlaylistPlay} from '@material-ui/icons'
+import {ExpandMoreSharp, Subject} from '@material-ui/icons'
 import {FormattedHTMLMessage} from 'react-intl'
+import API from '../../../config/api.config'
 import './Task.scss'
 
 interface Props {
@@ -42,18 +44,24 @@ export default function SimpleList(props: Props) {
                 ? props.list.map((task: { id: string, name: string, annex: string }, index: number) => (
                     <ExpansionPanel expanded={expanded === index} onChange={handleChange(index)} key={task.id}>
                         <ExpansionPanelSummary expandIcon={<ExpandMoreSharp/>} className="task-header">
-
-                            <Typography>{task.name}</Typography>
+                            <Avatar className={[`icon-${index}`, "icon"].join(' ')}>
+                                <Subject fontSize="small"/>
+                            </Avatar>
+                            <Typography className="task-header-text">{task.name}</Typography>
                         </ExpansionPanelSummary>
-                        <ExpansionPanelDetails>
+                        <ExpansionPanelDetails className="task-content">
                             <List>
                                 {
-                                    JSON.parse(task.annex).map((docs: { label: string, value: string }) => (
+                                    JSON.parse(task.annex).map((docs: { label: string, value: string, startTime: string, endTime: string }) => (
                                         <ListItem key={docs.label}>
                                             <ListItemAvatar>
                                                 <Avatar/>
                                             </ListItemAvatar>
-                                            <ListItemText primary={docs.value}/>
+                                            {/*<ListItemText primary={`${API.preview}/${docs.value}`}/>*/}
+                                            <ListItemText primary={docs.label} secondary={docs.startTime}/>
+                                            <ListItemSecondaryAction>
+                                                <span className="open">open</span>
+                                            </ListItemSecondaryAction>
                                         </ListItem>
                                     ))
                                 }
