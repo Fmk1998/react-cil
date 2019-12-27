@@ -20,7 +20,8 @@
     "redux-devtools": "^3.5.0",
     "redux-devtools-extension": "^2.13.8",
     "redux-persist": "^6.0.0",
-    "redux-thunk": "^2.3.0"
+    "redux-thunk": "^2.3.0",
+    "v-viewer": "^1.5.1"
   },
   "scripts": {
     "start": "cross-env PORT=8088 react-scripts start",

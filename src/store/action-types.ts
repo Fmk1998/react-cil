@@ -22,3 +22,6 @@ export const TAGLINK = {
     LIST: 'LIST',
     QUERY: 'QUERY'
 }
+
+/* design */
+export const DESIGN = 'DESIGN'

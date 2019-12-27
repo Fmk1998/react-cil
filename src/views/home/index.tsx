@@ -8,7 +8,7 @@ import CardDashboard from '../../components/CardDashboard'
 // import GridLayoutComponent from '../../components/GridLayout'
 import CalendarComponent from '../../components/Calendar'
 import SimpleList from "../../components/common/Task/SimpleList";
-import taglinkList from '../../components/common/Taglink/Taglink'
+import TaglinkList from '../../components/common/Taglink/Taglink'
 
 interface Props extends RouteComponentProps {
     queryData: any,
@@ -34,7 +34,7 @@ class Home extends React.Component<Props, State> {
             <div className={"dashboard-layout"} style={{padding: '25px'}}>
                 <Grid container spacing={3}>
                     <Grid item xs={8}>
-                        <CardDashboard content={taglinkList} title={"应用列表"}/>
+                        <CardDashboard content={TaglinkList} title={"应用列表"}/>
                     </Grid>
                     <Grid item xs={4}>
                         <CardDashboard content={<SimpleList list={this.props.list}/>} title={"任务中心"}/>

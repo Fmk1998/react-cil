@@ -56,7 +56,7 @@ const Profile = () => {
         setAnchorEl(null);
     }
 
-    const loginOut =() => {
+    const loginOut = () => {
         dispatch({type: LOGINOUT})
     }
 
@@ -82,6 +82,10 @@ export default class Header extends React.Component<MyProps, MyState> {
         super(props);
     };
 
+    handleChange() {
+        // console.log(event)
+    }
+
     render(): React.ReactNode {
         return (
             <div>
@@ -92,8 +96,8 @@ export default class Header extends React.Component<MyProps, MyState> {
                         </Typography>
                         <div className={"route-menu"}>
                             {this.props.route.map(value => (
-                                <Button key={value.path}>
-                                    <Link to={value.path}>{value.name}</Link>
+                                <Button key={value.path} className={''}>
+                                    <Link to={value.path} onClick={this.handleChange}>{value.name}</Link>
                                 </Button>
                             ))}
                         </div>

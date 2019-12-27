@@ -1,0 +1,1 @@
+import {DESIGN} from '../action-types';import {getAllDesign} from '../../service/designService'export const getDesign = () => async (dispatch: any) => {    // @ts-ignore    const {data, error} = await getAllDesign()    if (error) return false;    dispatch({type: DESIGN, payload: data.data})}

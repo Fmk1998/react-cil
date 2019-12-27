@@ -19,7 +19,7 @@ interface State {
 
 }
 
-class taglinkList extends React.Component<Props, State> {
+class TaglinkList extends React.Component<Props, State> {
     constructor(props: Props) {
         super(props)
     }
@@ -105,7 +105,7 @@ const mapDispatchToProps = (dispatch: any) => {
     }
 }
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(taglinkList))
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(TaglinkList))
 
 
 
