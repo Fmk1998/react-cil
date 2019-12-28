@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import {RouteComponentProps, withRouter} from 'react-router';
 import {connect} from 'react-redux'
-
+import Vviewer from "v-viewer";
 import {Grid, Paper, Tabs, Tab, Typography, Box} from '@material-ui/core'
 import API from '../../../config/api.config'
 
@@ -81,18 +81,20 @@ function DesignLayout(props: any) {
                 {
                     props.list.map((item: any, index: number) => (
                         <TabPanel index={index} value={value} key={item.id}>
-                            <Grid container spacing={3}>
-                                {
-                                    JSON.parse(item.url).map((item: any) => (
-                                        <Grid className={'design-cols'} item xs={3} key={item.label}>
-                                            <Paper className={'design-cols-col'}>
-                                                <img src={`${API.preview}/${item.value}`} alt=""/>
-                                                <div className={'view'}>View Details</div>
-                                            </Paper>
-                                        </Grid>
-                                    ))
-                                }
-                            </Grid>
+                            <Vviewer>
+                                <Grid container spacing={3}>
+                                    {
+                                        JSON.parse(item.url).map((item: any) => (
+                                            <Grid className={'design-cols'} item xs={3} key={item.label}>
+                                                <Paper className={'design-cols-col'}>
+                                                    <img src={`${API.preview}/${item.value}`} alt=""/>
+                                                    <div className={'view'}>View Details</div>
+                                                </Paper>
+                                            </Grid>
+                                        ))
+                                    }
+                                </Grid>
+                            </Vviewer>
                         </TabPanel>
                     ))
                 }
