@@ -1,14 +1,13 @@
 import React, {useState} from 'react'
 import {RouteComponentProps, withRouter} from 'react-router';
 import {connect} from 'react-redux'
-import Vviewer from "v-viewer";
 import {Grid, Paper, Tabs, Tab, Typography, Box} from '@material-ui/core'
 import API from '../../../config/api.config'
-
-
 import {getDesign} from '../../../store/actions/designAction'
+// import 'react-fancybox/lib/fancybox.css'
 import './Designlist.scss'
-
+// import Viewer from 'v-viewer' // 你是个神仙，React里面用Vue，再w我下的就是VUE，你再搭配歌Angular，他自己就是VUe
+import Viewer from '../../Viewer'
 interface Props extends RouteComponentProps {
     getDesign?: any,
     design?: []
@@ -66,7 +65,7 @@ function DesignLayout(props: any) {
 
     const handleChange = (event: React.ChangeEvent<{}>, newValue: number) => {
         setValue(newValue);
-    }
+    };
 
     return (
         <div className={'design-list'}>
@@ -81,20 +80,9 @@ function DesignLayout(props: any) {
                 {
                     props.list.map((item: any, index: number) => (
                         <TabPanel index={index} value={value} key={item.id}>
-                            <Vviewer>
-                                <Grid container spacing={3}>
-                                    {
-                                        JSON.parse(item.url).map((item: any) => (
-                                            <Grid className={'design-cols'} item xs={3} key={item.label}>
-                                                <Paper className={'design-cols-col'}>
-                                                    <img src={`${API.preview}/${item.value}`} alt=""/>
-                                                    <div className={'view'}>View Details</div>
-                                                </Paper>
-                                            </Grid>
-                                        ))
-                                    }
-                                </Grid>
-                            </Vviewer>
+                            <Grid container spacing={3}>
+                                <Viewer images={JSON.parse(item.url)}/>
+                            </Grid>
                         </TabPanel>
                     ))
                 }

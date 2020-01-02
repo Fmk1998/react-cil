@@ -4,6 +4,7 @@
   "private": true,
   "author": "chenxi",
   "dependencies": {
+    "@hanyk/rc-viewer": "^0.0.3",
     "@toast-ui/react-calendar": "^1.0.4",
     "axios": "^0.19.0",
     "js-cookie": "^2.2.1",
@@ -20,8 +21,7 @@
     "redux-devtools": "^3.5.0",
     "redux-devtools-extension": "^2.13.8",
     "redux-persist": "^6.0.0",
-    "redux-thunk": "^2.3.0",
-    "v-viewer": "^1.5.1"
+    "redux-thunk": "^2.3.0"
   },
   "scripts": {
     "start": "cross-env PORT=8088 react-scripts start",
