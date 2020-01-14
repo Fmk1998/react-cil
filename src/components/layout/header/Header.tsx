@@ -1,6 +1,6 @@
 import React from 'react'
 import {Link} from "react-router-dom";
-import {Button, Typography, Toolbar, AppBar, IconButton, Menu, MenuItem} from "@material-ui/core";
+import {Button, Typography, Toolbar, AppBar, IconButton, Menu, MenuItem, Tabs, Tab} from "@material-ui/core";
 import {AccountCircle, Translate} from '@material-ui/icons';
 import {useDispatch} from "react-redux";
 import {LOGINOUT, SETTING} from '../../../store/action-types'
@@ -77,6 +77,27 @@ const Profile = () => {
     )
 }
 
+const NavMenu = (props: any) => {
+    const [value, setValue] = React.useState(0);
+
+    const handleChange = (event: React.ChangeEvent<{}>, newValue: number) => {
+        setValue(newValue);
+        console.log(event.target)
+    }
+
+    return (
+        <div>
+            <Tabs value={value} onChange={handleChange}>
+                {
+                    props.route.map((value: any) => (
+                        <Tab label={value.name} key={value.path}></Tab>
+                    ))
+                }
+            </Tabs>
+        </div>
+    )
+}
+
 export default class Header extends React.Component<MyProps, MyState> {
     constructor(props: MyProps) {
         super(props);
@@ -95,11 +116,12 @@ export default class Header extends React.Component<MyProps, MyState> {
                             Para R&D
                         </Typography>
                         <div className={"route-menu"}>
-                            {this.props.route.map(value => (
-                                <Button key={value.path} className={''}>
-                                    <Link to={value.path} onClick={this.handleChange}>{value.name}</Link>
+                            {this.props.route.map((value) => (
+                                <Button key={value.path}>
+                                    <Link to={value.path}>{value.name}</Link>
                                 </Button>
                             ))}
+                            {/*<NavMenu route={this.props.route}/>*/}
                         </div>
                         <div className={"right-menu"}>
                             <Language/>

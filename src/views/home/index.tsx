@@ -1,14 +1,14 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {RouteComponentProps, withRouter} from 'react-router-dom'
-import {Grid, Paper} from "@material-ui/core";
+import {Grid} from "@material-ui/core";
 import {queryData} from '../../store/actions/categoryAction'
 import {FormattedHTMLMessage} from "react-intl";
 import CardDashboard from '../../components/CardDashboard'
 // import GridLayoutComponent from '../../components/GridLayout'
-import CalendarComponent from '../../components/Calendar'
 import SimpleList from "../../components/common/Task/SimpleList";
 import TaglinkList from '../../components/common/Taglink/Taglink'
+import Calendar from '../../components/common/Calendar/Calendar'
 
 interface Props extends RouteComponentProps {
     queryData: any,
@@ -38,6 +38,9 @@ class Home extends React.Component<Props, State> {
                     </Grid>
                     <Grid item xs={4}>
                         <CardDashboard content={<SimpleList list={this.props.list}/>} title={"任务中心"}/>
+                    </Grid>
+                    <Grid item xs={8}>
+                        <CardDashboard title={'日历'} content={<Calendar />}/>
                     </Grid>
                 </Grid>
             </div>

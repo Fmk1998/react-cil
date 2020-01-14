@@ -3,7 +3,6 @@ import {connect} from 'react-redux'
 import {RouteComponentProps, withRouter} from 'react-router-dom'
 import Avatar from '@material-ui/core/Avatar'
 import API from '../../../config/api.config'
-
 import {queryData} from '../../../store/actions/taglinkAction'
 import {groupBy} from 'lodash'
 import './Taglink.scss'
@@ -73,17 +72,19 @@ function Tags(props: any) {
     const tags = props.tag;
     const tag = tags.map((item: any) =>
         <li key={item.id}>
-            {item.icon ? (
-                <Avatar src={`${API.preview}/${JSON.parse(item.icon)[0].value}`} style={{margin: '5px auto', borderRadius: '5px'}}></Avatar>
-            ) : (
-                <Avatar style={{
-                    margin: '5px auto',
-                    borderRadius: '5px',
-                    backgroundColor: '#56a9ff'
-                }}>{item.name.substring(0, 1).toUpperCase()}</Avatar>
-            )}
+            <a href={item.link} target="_blank">
+                {item.icon ? (
+                    <Avatar src={`${API.preview}/${JSON.parse(item.icon)[0].value}`} style={{margin: '5px auto', borderRadius: '5px'}}></Avatar>
+                ) : (
+                    <Avatar style={{
+                        margin: '5px auto',
+                        borderRadius: '5px',
+                        backgroundColor: '#56a9ff'
+                    }}>{item.name.substring(0, 1).toUpperCase()}</Avatar>
+                )}
 
-            <p>{item.name}</p>
+                <p>{item.name}</p>
+            </a>
         </li>
     )
 

@@ -15,6 +15,7 @@ import {
 import {ExpandMoreSharp, Subject} from '@material-ui/icons'
 import {FormattedHTMLMessage} from 'react-intl'
 import API from '../../../config/api.config'
+import {DOCICON, CATEGORY} from '../../../utils/enum'
 import './Task.scss'
 
 interface Props {
@@ -41,13 +42,13 @@ export default function SimpleList(props: Props) {
     return (
         <div className={classes.root}>
             {props.list.length > 0
-                ? props.list.map((task: { id: string, name: string, annex: string }, index: number) => (
+                ? props.list.map((task: { id: string, category: number,fileType: number, name: string, annex: string }, index: number) => (
                     <ExpansionPanel expanded={expanded === index} onChange={handleChange(index)} key={task.id}>
                         <ExpansionPanelSummary expandIcon={<ExpandMoreSharp/>} className="task-header">
                             <Avatar className={[`icon-${index}`, "icon"].join(' ')}>
                                 <Subject fontSize="small"/>
                             </Avatar>
-                            <Typography className="task-header-text">{task.name}</Typography>
+                            <Typography className="task-header-text">{CATEGORY[task.category]}</Typography>
                         </ExpansionPanelSummary>
                         <ExpansionPanelDetails className="task-content">
                             <List>
@@ -55,7 +56,7 @@ export default function SimpleList(props: Props) {
                                     JSON.parse(task.annex).map((docs: { label: string, value: string, startTime: string, endTime: string }) => (
                                         <ListItem key={docs.label}>
                                             <ListItemAvatar>
-                                                <Avatar/>
+                                                <Avatar src={require(`../../../../public/doc/${DOCICON[task.fileType]}.png`)} className="doc-icon"/>
                                             </ListItemAvatar>
                                             {/*<ListItemText primary={`${API.preview}/${docs.value}`}/>*/}
                                             <ListItemText primary={docs.label} secondary={docs.startTime}/>

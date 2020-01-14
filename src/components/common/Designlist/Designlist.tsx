@@ -72,8 +72,8 @@ function DesignLayout(props: any) {
             <Grid container>
                 <Tabs className={'design-tabs'} orientation="vertical" value={value} onChange={handleChange}>
                     {
-                        props.list.map((item: any) => (
-                            <Tab key={item.id} label={item.project}/>
+                        props.list.map((item: any, index: number) => (
+                            <Tab className={`bgColor-${index%props.list.length}`} key={item.id} label={`${item.project}[${item.version}]`}/>
                         ))
                     }
                 </Tabs>
