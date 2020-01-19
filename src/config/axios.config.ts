@@ -27,10 +27,12 @@ axios.interceptors.request.use(function (config) {
 axios.interceptors.response.use(function (response) {
     // 对响应数据做点什么
     // NProgress.start();
+    console.log('response', response)
     return response;
 }, function (error) {
     // 对响应错误做点什么
     // NProgress.done()
+    console.log('error', error)
     return Promise.reject(error);
 });
 export default axios

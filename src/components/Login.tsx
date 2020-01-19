@@ -10,13 +10,19 @@ import {
     OutlinedInput,
     InputAdornment,
     IconButton,
-    TextField
+    TextField,
+    CssBaseline,
+    Typography,
+    Container,
+    Grid,
+    GridSpacing
 } from '@material-ui/core';
 import {Visibility, VisibilityOff} from "@material-ui/icons";
 import {connect, useSelector} from "react-redux";
 import {RouteComponentProps, withRouter} from "react-router";
 /* actions */
 import {loginAction} from '../store/actions/userAction'
+import '../styles/styles.scss'
 
 interface Props extends RouteComponentProps {
     disToLogin: any
@@ -35,9 +41,27 @@ const mapDispatchToProps = (dispatch: any) => {
     }
 }
 
+function LoginForm() {
+    return(
+      <React.Fragment>
+        <CssBaseline/>
+        <Container maxWidth="lg">
+          <Typography component="div" style={{height: '100vh'}}>
+              <Grid container>
+                  <Grid item xs={4}>
+
+                  </Grid>
+                  <Grid item xs={8}></Grid>
+              </Grid>
+          </Typography>
+        </Container>
+      </React.Fragment>
+    )
+}
+
 
 const LoginFormDialog = (props: Props) => {
-    const [open, setOpen] = React.useState(true);
+    const [open, setOpen] = React.useState(false);
     const [values, setValues] = React.useState({
         username: '',
         password: '',
@@ -78,10 +102,11 @@ const LoginFormDialog = (props: Props) => {
         }
     }, [user.access_token])
     return (
-        <div>
-            <Button variant="outlined" color="primary" onClick={handleClickOpen}>
-                登录
-            </Button>
+        <div style={{backgroundColor: '#f5f5fc'}}>
+            {/*<Button variant="outlined" color="primary" onClick={handleClickOpen}>*/}
+                {/*登录*/}
+            {/*</Button>*/}
+            <LoginForm />
             <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
                 <DialogTitle id="form-dialog-title">登录</DialogTitle>
                 <DialogContent>

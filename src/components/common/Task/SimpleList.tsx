@@ -17,6 +17,7 @@ import {FormattedHTMLMessage} from 'react-intl'
 import API from '../../../config/api.config'
 import {DOCICON, CATEGORY} from '../../../utils/enum'
 import './Task.scss'
+import XLSX from 'xlsx'
 
 interface Props {
     list: []
@@ -39,10 +40,25 @@ export default function SimpleList(props: Props) {
         setExpanded(isExpanded ? panel : false);
     }
 
+    const handleFile = (url: any) => (event: React.ChangeEvent<{}>) => {
+        const xhr = new XMLHttpRequest()
+        xhr.open('get', url, true)
+        xhr.responseType = 'arraybuffer'
+        xhr.onload = e => {
+            if (xhr.status === 200) {
+                const data = new Uint8Array(xhr.response)
+                const workbook = XLSX.read(data, {type: 'array'})
+                console.log('workbook', workbook)
+            }
+        }
+        xhr.send();
+    }
+
+
     return (
         <div className={classes.root}>
             {props.list.length > 0
-                ? props.list.map((task: { id: string, category: number,fileType: number, name: string, annex: string }, index: number) => (
+                ? props.list.map((task: { id: string, category: number, fileType: number, name: string, annex: string }, index: number) => (
                     <ExpansionPanel expanded={expanded === index} onChange={handleChange(index)} key={task.id}>
                         <ExpansionPanelSummary expandIcon={<ExpandMoreSharp/>} className="task-header">
                             <Avatar className={[`icon-${index}`, "icon"].join(' ')}>
@@ -56,12 +72,14 @@ export default function SimpleList(props: Props) {
                                     JSON.parse(task.annex).map((docs: { label: string, value: string, startTime: string, endTime: string }) => (
                                         <ListItem key={docs.label}>
                                             <ListItemAvatar>
-                                                <Avatar src={require(`../../../../public/doc/${DOCICON[task.fileType]}.png`)} className="doc-icon"/>
+                                                <Avatar
+                                                    src={require(`../../../../public/doc/${DOCICON[task.fileType]}.png`)}
+                                                    className="doc-icon"/>
                                             </ListItemAvatar>
                                             {/*<ListItemText primary={`${API.preview}/${docs.value}`}/>*/}
                                             <ListItemText primary={docs.label} secondary={docs.startTime}/>
                                             <ListItemSecondaryAction>
-                                                <span className="open">open</span>
+                                                <span className="open" onClick={handleFile(`${API.preview}/${docs.value}`)}>open</span>
                                             </ListItemSecondaryAction>
                                         </ListItem>
                                     ))
