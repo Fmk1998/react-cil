@@ -15,7 +15,7 @@ import {
     Typography,
     Container,
     Grid,
-    GridSpacing
+    Link
 } from '@material-ui/core';
 import {Visibility, VisibilityOff} from "@material-ui/icons";
 import {connect, useSelector} from "react-redux";
@@ -23,6 +23,7 @@ import {RouteComponentProps, withRouter} from "react-router";
 /* actions */
 import {loginAction} from '../store/actions/userAction'
 import '../styles/styles.scss'
+import '../styles/login.scss'
 
 interface Props extends RouteComponentProps {
     disToLogin: any
@@ -41,120 +42,97 @@ const mapDispatchToProps = (dispatch: any) => {
     }
 }
 
-function LoginForm() {
-    return(
-      <React.Fragment>
-        <CssBaseline/>
-        <Container maxWidth="lg">
-          <Typography component="div" style={{height: '100vh'}}>
-              <Grid container>
-                  <Grid item xs={4}>
-
-                  </Grid>
-                  <Grid item xs={8}></Grid>
-              </Grid>
-          </Typography>
-        </Container>
-      </React.Fragment>
-    )
-}
-
-
-const LoginFormDialog = (props: Props) => {
-    const [open, setOpen] = React.useState(false);
-    const [values, setValues] = React.useState({
+function LoginForm(props: Props) {
+    const [value, setValues] = React.useState({
         username: '',
         password: '',
-        showPassword: false,
-    });
+        showPassword: false
+    })
     const user = useSelector((state: State) => state.user)
-
-    const handleChange = (prop: keyof State) => (event: React.ChangeEvent<HTMLInputElement>) => {
-        setValues({...values, [prop]: event.target.value});
-    };
+    const handleChange = (props: keyof State) => (event: React.ChangeEvent<HTMLInputElement>) => {
+        setValues({...value, [props]: event.target.value})
+    }
 
     const handleClickShowPassword = () => {
-        setValues({...values, showPassword: !values.showPassword});
-    };
+        setValues({...value, showPassword: !value.showPassword})
+    }
 
     const handleMouseDownPassword = (event: React.MouseEvent<HTMLButtonElement>) => {
         event.preventDefault();
-    };
-    const handleClickOpen = () => {
-        setOpen(true);
-    };
+    }
 
-    const handleClose = () => {
-        setOpen(false);
-    };
-    const goToRegister = () => {
-        setOpen(false);
-        props.history.push('/register')
-    };
+    // const goToRegister = () => {
+    //     props.history.push('/register')
+    // }
+
     const goToLogin = () => {
-        props.disToLogin(values.username, values.password)
-    };
+        props.disToLogin(value.username, value.password)
+    }
+
     useEffect(() => {
         if (user.access_token) {
-            // eslint-disable-next-line
-            // props.history.push('/')
             window.location.href = `/`
         }
     }, [user.access_token])
+
     return (
-        <div style={{backgroundColor: '#f5f5fc'}}>
-            {/*<Button variant="outlined" color="primary" onClick={handleClickOpen}>*/}
-                {/*登录*/}
-            {/*</Button>*/}
-            <LoginForm />
-            <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
-                <DialogTitle id="form-dialog-title">登录</DialogTitle>
-                <DialogContent>
-                    <FormControl variant="outlined" style={{width: "100%"}}>
-                        <TextField
-                            label="用户名"
-                            placeholder="请输入用户名"
-                            multiline
-                            variant="outlined"
-                            onChange={handleChange('username')}
-                        />
-                    </FormControl>
-                    <br/>
-                    <FormControl variant="outlined" style={{width: "100%", marginTop: "20px"}}>
-                        <InputLabel htmlFor="outlined-adornment-password">密码</InputLabel>
-                        <OutlinedInput
-                            type={values.showPassword ? 'text' : 'password'}
-                            value={values.password}
-                            onChange={handleChange('password')}
-                            labelWidth={30}
-                            endAdornment={
-                                <InputAdornment position="end">
-                                    <IconButton
-                                        aria-label="toggle password visibility"
-                                        onClick={handleClickShowPassword}
-                                        onMouseDown={handleMouseDownPassword}
-                                        edge="end"
-                                    >
-                                        {values.showPassword ? <Visibility/> : <VisibilityOff/>}
-                                    </IconButton>
-                                </InputAdornment>
-                            }
-                        />
-                    </FormControl>
-                    <div className={"button-three"} style={{float: "right"}}>
-                        <Button color="primary" onClick={goToRegister}>立即注册</Button>
-                    </div>
-                </DialogContent>
-                <DialogActions>
-                    <Button onClick={handleClose} color="primary">
-                        取消
-                    </Button>
-                    <Button onClick={goToLogin} color="primary">
-                        登录
-                    </Button>
-                </DialogActions>
-            </Dialog>
-        </div>
-    );
+        <React.Fragment>
+            <CssBaseline/>
+            <Container maxWidth="lg">
+                <Typography component="div" style={{height: '100vh'}}>
+                    <Grid container>
+                        <Grid item xs={4} style={{backgroundColor: '#fff'}}>
+                            <div className="login-form-logo">
+                                <img src={require('../assets/logo.png')} width='40' height='40'/><h3>Para-Portal</h3>
+                            </div>
+                            <div className="login-form-item">
+                                <div className="login-form-title">
+                                    <Typography variant="h5">
+                                        Log in
+                                    </Typography>
+                                    <Link href="#">Sign Up</Link>
+                                </div>
+                                <FormControl>
+                                    <TextField
+                                        label="用户名"
+                                        placeholder="请输入用户名"
+                                        variant="outlined"
+                                    />
+                                </FormControl>
+                                <FormControl>
+                                    <InputLabel htmlFor="outlined-adornment-password">密码</InputLabel>
+                                    <OutlinedInput
+                                        type={value.showPassword ? 'text' : 'password'}
+                                        value={value.password}
+                                        onChange={handleChange('password')}
+                                        labelWidth={30}
+                                        endAdornment={
+                                            <InputAdornment position="end">
+                                                <IconButton
+                                                    aria-label="toggle password visibility"
+                                                    onClick={handleClickShowPassword}
+                                                    onMouseDown={handleMouseDownPassword}
+                                                    edge="end"
+                                                >
+                                                    {value.showPassword ? <Visibility/> : <VisibilityOff/>}
+                                                </IconButton>
+                                            </InputAdornment>
+                                        }
+                                    />
+                                </FormControl>
+                            </div>
+                            <div className="login-form-btn">
+                                <Button onClick={goToLogin} className="btn-login">Log in</Button>
+                            </div>
+                        </Grid>
+                        <Grid item xs={6} style={{backgroundColor: '#364fcc'}}>
+
+                        </Grid>
+                    </Grid>
+                </Typography>
+            </Container>
+        </React.Fragment>
+    )
 }
-export default withRouter(connect(null, mapDispatchToProps)(LoginFormDialog))
+
+export default withRouter(connect(null, mapDispatchToProps)(LoginForm))
