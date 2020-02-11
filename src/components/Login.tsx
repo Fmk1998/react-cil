@@ -97,6 +97,7 @@ function LoginForm(props: Props) {
                                         label="用户名"
                                         placeholder="请输入用户名"
                                         variant="outlined"
+                                        onChange={handleChange('username')}
                                     />
                                 </FormControl>
                                 <FormControl>
