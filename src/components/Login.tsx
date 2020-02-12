@@ -66,7 +66,9 @@ function LoginForm(props: Props) {
     // }
 
     const goToLogin = () => {
-        props.disToLogin(value.username, value.password)
+        if(value.username && value.password) {
+            props.disToLogin(value.username, value.password)
+        }
     }
 
     useEffect(() => {
@@ -78,21 +80,21 @@ function LoginForm(props: Props) {
     return (
         <React.Fragment>
             <CssBaseline/>
-            <Container maxWidth="lg">
+            <Container maxWidth="lg" className="login">
                 <Typography component="div" style={{height: '100vh'}}>
                     <Grid container>
-                        <Grid item xs={4} style={{backgroundColor: '#fff'}}>
+                        <Grid item xs={4} style={{backgroundColor: "#fff", padding: "2rem"}}>
                             <div className="login-form-logo">
-                                <img src={require('../assets/logo.png')} width='40' height='40'/><h3>Para-Portal</h3>
+                                <img src={require('../assets/logo.png')} width='28' height='28'/><h3>Para-Portal</h3>
                             </div>
                             <div className="login-form-item">
-                                <div className="login-form-title">
+                                <div className="title">
                                     <Typography variant="h5">
                                         Log in
                                     </Typography>
-                                    <Link href="#">Sign Up</Link>
+                                    <Link href="#" className="sign-up">Sign Up</Link>
                                 </div>
-                                <FormControl>
+                                <FormControl variant="outlined" className="item" style={{width: "80%"}}>
                                     <TextField
                                         label="用户名"
                                         placeholder="请输入用户名"
@@ -100,7 +102,7 @@ function LoginForm(props: Props) {
                                         onChange={handleChange('username')}
                                     />
                                 </FormControl>
-                                <FormControl>
+                                <FormControl variant="outlined" className="item" style={{width: "80%"}}>
                                     <InputLabel htmlFor="outlined-adornment-password">密码</InputLabel>
                                     <OutlinedInput
                                         type={value.showPassword ? 'text' : 'password'}
@@ -126,8 +128,8 @@ function LoginForm(props: Props) {
                                 <Button onClick={goToLogin} className="btn-login">Log in</Button>
                             </div>
                         </Grid>
-                        <Grid item xs={6} style={{backgroundColor: '#364fcc'}}>
-
+                        <Grid item xs={4} className="login-form-right">
+                            <img src={require('../assets/form-bg.png')} />
                         </Grid>
                     </Grid>
                 </Typography>
