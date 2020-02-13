@@ -1,10 +1,6 @@
 import React, {useEffect} from 'react';
 import {
     Button,
-    Dialog,
-    DialogActions,
-    DialogContent,
-    DialogTitle,
     FormControl,
     InputLabel,
     OutlinedInput,
@@ -15,7 +11,7 @@ import {
     Typography,
     Container,
     Grid,
-    Link
+    Link,
 } from '@material-ui/core';
 import {Visibility, VisibilityOff} from "@material-ui/icons";
 import {connect, useSelector} from "react-redux";
@@ -66,9 +62,7 @@ function LoginForm(props: Props) {
     // }
 
     const goToLogin = () => {
-        if(value.username && value.password) {
-            props.disToLogin(value.username, value.password)
-        }
+        props.disToLogin(value.username, value.password)
     }
 
     useEffect(() => {
