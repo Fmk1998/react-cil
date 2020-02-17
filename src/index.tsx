@@ -5,10 +5,18 @@ import {store, persistor} from './store' // 数据仓库
 import {PersistGate} from 'redux-persist/integration/react' // 持久化存储
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import {Debugger} from 'para-lib';
+/* @dynamic debug */
+/* dynamic 为动态代码注释,请勿删除 */
+/* @dynamic end */
+declare let window: Window & { ParaWeb: any };
+/* @dynamic version */
+window.ParaWeb = {version: '0.1.0',env: '', buildTime: '2/18/2020, 12:42:02 AM'}
+/* @dynamic end */
 
-const init = async (debug: Array<string> | null = null) => {
-    if (debug instanceof Array) await Debugger.init(debug); // 开发调试组件
+const init = async (debug: Array<string> = []) => {
+    /* @dynamic Debugger */
+    /* dynamic 为动态代码注释,请勿删除 */
+    /* @dynamic end */
     // store.subscribe(() => console.log('getState:', store.getState()))
     ReactDOM.render(
         <Provider store={store}>
@@ -20,7 +28,7 @@ const init = async (debug: Array<string> | null = null) => {
     );
     serviceWorker.unregister();
 }
-if (process.env.NODE_ENV === 'development')
-    init();
-else
-    init();
+
+/* @dynamic init */
+init()
+/* @dynamic end */

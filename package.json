@@ -9,7 +9,7 @@
     "lodash": "^4.17.15",
     "node-sass": "^4.13.0",
     "nprogress": "^0.2.0",
-    "para-lib": "^1.2.50",
+    "para-lib": "^1.2.55",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "react-grid-layout": "^0.17.1",
@@ -23,10 +23,16 @@
     "redux-thunk": "^2.3.0"
   },
   "scripts": {
-    "start": "cross-env PORT=8088 react-scripts start",
-    "build": "react-scripts build",
+    "start": "node run dev",
+    "build": "node run",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
+  },
+  "dev": {
+    "port": 8088,
+    "debug": [
+      "http://192.168.2.241:10000"
+    ]
   },
   "eslintConfig": {
     "extends": "react-app"
