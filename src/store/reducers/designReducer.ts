@@ -1,1 +1,0 @@
-import {DESIGN} from '../action-types'const initState = {    design: []}export default function designReducer(state = initState, action: any) {    switch (action.type) {        case DESIGN:            return Object.assign({}, state, {design: action.payload})        default:            return state    }}

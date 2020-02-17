@@ -45,12 +45,4 @@ class App extends React.Component<Props, State> {
     }
 }
 
-// const App: React.FC = () => {
-//     return (
-//         <div className="App">
-//             <HashRouterModel/>
-//         </div>
-//     );
-// }
-
 export default connect(mapPropsToState)(App);

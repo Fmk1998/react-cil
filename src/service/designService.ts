@@ -1,1 +1,0 @@
-import axios from '../config/axios.config'import api from '../config/api.config'export const getAllDesign = () => {    return axios.get(api.design)}
