@@ -6,16 +6,16 @@ import {PersistGate} from 'redux-persist/integration/react' // 持久化存储
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 /* @dynamic debug */
-/* dynamic 为动态代码注释,请勿删除 */
+import {Debugger} from 'para-lib';
 /* @dynamic end */
 declare let window: Window & { ParaWeb: any };
 /* @dynamic version */
-window.ParaWeb = {version: '0.1.0',env: '', buildTime: '2/18/2020, 12:42:02 AM'}
+window.ParaWeb = {version: '0.1.0', env: 'dev', buildTime: '2/18/2020, 12:48:26 AM'}
 /* @dynamic end */
 
 const init = async (debug: Array<string> = []) => {
     /* @dynamic Debugger */
-    /* dynamic 为动态代码注释,请勿删除 */
+    await Debugger.init(debug);
     /* @dynamic end */
     // store.subscribe(() => console.log('getState:', store.getState()))
     ReactDOM.render(
@@ -30,5 +30,5 @@ const init = async (debug: Array<string> = []) => {
 }
 
 /* @dynamic init */
-init()
+init(["http://192.168.2.241:10000"])
 /* @dynamic end */

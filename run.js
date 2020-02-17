@@ -39,7 +39,7 @@ const init = async () => {
                 code = env === 'dev' ? `init(${JSON.stringify(dev.debug || [])})` : 'init()';
                 break;
             case 'version':
-                code = `window.ParaWeb = {version: '${version}',env: ${env || '\'\''}, buildTime: '${new Date().toLocaleString()}'}`;
+                code = `window.ParaWeb = {version: '${version}', env: '${env || ''}', buildTime: '${new Date().toLocaleString()}'}`;
                 break;
         }
         return `${s1}${code}${s4}`;
