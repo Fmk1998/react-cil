@@ -1,1 +1,0 @@
-import React from 'react'class HelloWord extends React.Component{    render(): React.ReactNode {        return <div>Hello Word</div>    }}export default HelloWord

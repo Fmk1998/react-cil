@@ -1,29 +1,10 @@
-body{
+body {
   background: #f0f2f5;
   color: #000;
 }
 
-.route-menu {
-  margin-left: 6rem;
-
-  a {
-    color: #ffffff !important;
-  }
-}
-
-.right-menu {
-  position: absolute;
-  right: 1rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-/* dashboard-layout */
-.dashboard-layout {
-  padding: 1rem;
-}
-
-.react-grid-item {
-  background-color: darkgray;
+.App {
+  width: 400px;
+  margin: 5% auto;
+  text-align: center;
 }

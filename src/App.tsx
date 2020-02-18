@@ -1,9 +1,12 @@
 import React from 'react';
 import {IntlProvider} from 'react-intl' // 国际化
 import language from './lang'
-import HashRouterModel from './router'
 import './styles/normalize.scss'
 import {connect} from "react-redux";
+import Header from './components/layout/Header';
+import Main from './components/layout/Main';
+import Footer from './components/layout/Footer';
+
 
 interface Props {
     language?: any
@@ -37,12 +40,13 @@ class App extends React.Component<Props, State> {
         const {language} = this.props;
         return (
             <div className={"App"}>
-                <IntlProvider key="intl" locale={language} messages={this.getLocalMessage()}>
-                    <HashRouterModel/>
-                </IntlProvider>
+                <Header/>
+                <Main/>
+                <Footer/>
             </div>
         );
     }
 }
 
 export default connect(mapPropsToState)(App);
+

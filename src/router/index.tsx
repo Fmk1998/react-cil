@@ -1,16 +1,19 @@
 import React from "react";
-import {
-    HashRouter,
-    Switch
-} from "react-router-dom";
-import PrimaryLayout from '../components/layout/PrimaryLayout'
+import {renderRoutes} from "react-router-config";
+import {HashRouter, Redirect} from "react-router-dom";
+import routes from "../routes.config";
 
-export default function HashRouterModel() {
-    return (
-        <HashRouter>
-            <Switch>
-                <PrimaryLayout/>
-            </Switch>
-        </HashRouter>
-    );
+// 异步渲染路由
+export class DynamicRouter extends React.Component {
+    render(): React.ReactNode {
+        return (
+            <HashRouter>
+                {renderRoutes(routes)}
+            </HashRouter>
+        );
+    }
 }
+
+export default DynamicRouter;
+
+

@@ -1,4 +1,5 @@
 import React from 'react'
+import './index.scss';
 
 interface Props {
 
@@ -13,7 +14,7 @@ export default class Header extends React.Component<Props, State> {
     render(): React.ReactNode {
         return (
             <div>
-                <h1>Header</h1>
+                <h1>This Header</h1>
             </div>
         );
     }
