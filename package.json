@@ -24,13 +24,12 @@
     "redux-thunk": "^2.3.0"
   },
   "scripts": {
-    "start": "node run dev",
-    "build": "node run",
+    "start": "node run dev && cross-env PORT=8088 react-scripts start",
+    "build": "node run && react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
   "dev": {
-    "port": 8088,
     "debug": [
       "http://192.168.2.241:10000"
     ]
