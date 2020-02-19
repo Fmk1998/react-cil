@@ -99,9 +99,8 @@ const Profile = () => {
 }
 
 const Header: FunctionComponent<Props> = (props) => {
-    const openNewPage = (value: RoutesConfig) => {
-        console.log(value)
-        // props.history.push(value.path)
+    const openNewPage = (value: RoutesConfig) => () => {
+        props.history.push(value.path)
     }
 
     return (
@@ -114,8 +113,7 @@ const Header: FunctionComponent<Props> = (props) => {
                 <div className={"header-menu"}>
                     {routes.map((value: RoutesConfig) => (
                         value.path !== '/'
-                            ? <Link key={value.path}
-                                    onClick={(value: any) => openNewPage(value)}
+                            ? <Link key={value.path} onClick={openNewPage(value)}
                             >{value.name}</Link>
                             : null
                     ))}
