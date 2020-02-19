@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {FunctionComponent} from 'react';
 import {IntlProvider} from 'react-intl' // 国际化
 import language from './lang'
 import './styles/normalize.scss'
@@ -7,8 +7,7 @@ import Header from './components/layout/Header';
 import Main from './components/layout/Main';
 import Footer from './components/layout/Footer';
 
-
-interface Props {
+interface OwnProps {
     language?: any
 }
 
@@ -16,19 +15,17 @@ interface State {
     setting?: any
 }
 
+type Props = OwnProps;
+
+
 const mapPropsToState = (state: State) => {
     return state.setting
 }
 
-class App extends React.Component<Props, State> {
-    constructor(props: Props) {
-        super(props)
-        this.getLocalMessage = this.getLocalMessage.bind(this)
-    }
-
-    getLocalMessage() {
+const App: FunctionComponent<Props> = (props) => {
+    const getLocalMessage = () => {
         let msg: object
-        if (this.props.language === 'zh-CN' || this.props.language === 'zh') {
+        if (props.language === 'zh-CN' || props.language === 'zh') {
             msg = language.zh
         } else {
             msg = language.en
@@ -36,19 +33,16 @@ class App extends React.Component<Props, State> {
         return {...msg}
     }
 
-    render(): React.ReactNode {
-        const {language} = this.props;
-        return (
-            <div className={"App"}>
-                <IntlProvider key="intl" locale={language} messages={this.getLocalMessage()}>
-                    <Header/>
-                    <Main/>
-                    <Footer/>
-                </IntlProvider>
-            </div>
-        );
-    }
-}
+    return (
+        <div className={"App"}>
+            <IntlProvider key="intl" locale={props.language} messages={getLocalMessage()}>
+                <Header/>
+                <Main/>
+                <Footer/>
+            </IntlProvider>
+        </div>
+    );
+};
 
 export default connect(mapPropsToState)(App);
 
