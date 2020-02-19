@@ -40,9 +40,11 @@ class App extends React.Component<Props, State> {
         const {language} = this.props;
         return (
             <div className={"App"}>
-                <Header/>
-                <Main/>
-                <Footer/>
+                <IntlProvider key="intl" locale={language} messages={this.getLocalMessage()}>
+                    <Header/>
+                    <Main/>
+                    <Footer/>
+                </IntlProvider>
             </div>
         );
     }
