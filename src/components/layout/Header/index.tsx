@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {FunctionComponent} from 'react'
 import {
     AppBar,
     Toolbar,
@@ -62,20 +62,28 @@ const Language = () => {
 
 // 个人中心
 const Profile = () => {
-    const dispatch =useDispatch();
+    const dispatch = useDispatch();
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 
 
+    const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+        setAnchorEl(event.currentTarget)
+    }
 
+    const handleClose = () => {
+        setAnchorEl(null)
+    }
 
-    const handleClick = () => {
-
+    const loginOut = () => {
+        dispatch({
+            type: LOGINOUT
+        })
     }
 
     return (
         <div>
             <IconButton aria-label="profile" color="inherit" onClick={handleClick}>
-                <AccountCircle/>
+                {/*<AccountCircle/>*/}
             </IconButton>
             <Menu
                 anchorEl={anchorEl}
@@ -89,7 +97,7 @@ const Profile = () => {
     )
 }
 
-function Header() {
+const Header: FunctionComponent = () => {
 
     return (
         <div>
@@ -99,8 +107,8 @@ function Header() {
                         React-cli
                     </Typography>
                     <div className="">
-                        <Language />
-                        <Profile />
+                        <Language/>
+                        <Profile/>
                     </div>
                 </Toolbar>
             </AppBar>
