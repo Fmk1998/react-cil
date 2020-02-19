@@ -6,7 +6,8 @@ import {
     Avatar,
     Button,
     Menu,
-    MenuItem
+    MenuItem,
+    IconButton
 } from "para-ui/core"
 // import {Translate} from "@material-ui/icons"
 import routes from "../../../routes.config"
@@ -26,11 +27,11 @@ const Language = () => {
 
     const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
         setAnchorEl(event.currentTarget)
-    }
+    };
 
     const handleClose = () => {
         setAnchorEl(null)
-    }
+    };
 
     const changeLanguage = (lang: string) => {
         dispatch({
@@ -38,7 +39,7 @@ const Language = () => {
             payload: lang
         })
         handleClose()
-    }
+    };
 
     return (
         <div>
@@ -59,6 +60,35 @@ const Language = () => {
     );
 }
 
+// 个人中心
+const Profile = () => {
+    const dispatch =useDispatch();
+    const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+
+
+
+
+    const handleClick = () => {
+
+    }
+
+    return (
+        <div>
+            <IconButton aria-label="profile" color="inherit" onClick={handleClick}>
+                <AccountCircle/>
+            </IconButton>
+            <Menu
+                anchorEl={anchorEl}
+                keepMounted
+                open={Boolean(anchorEl)}
+                onClose={handleClose}
+            >
+                <MenuItem onClick={loginOut}>LoginOut</MenuItem>
+            </Menu>
+        </div>
+    )
+}
+
 function Header() {
 
     return (
@@ -70,6 +100,7 @@ function Header() {
                     </Typography>
                     <div className="">
                         <Language />
+                        <Profile />
                     </div>
                 </Toolbar>
             </AppBar>
