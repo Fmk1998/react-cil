@@ -1,1 +1,1 @@
-.header{  &-logo{  }  &-menu{    margin-left: 5rem;    a{      color: #fff;      margin: 1rem;    }  }  &-right{    position: absolute;    right: 24px;    display: flex;    align-items: center;  }}.language{  padding: 1rem;}
+.header{  width: calc(100% - 240px)!important;  margin-left: 240px;  &-menu{    a{      color: #fff;      margin: 1rem;    }  }  &-right{    position: absolute;    right: 24px;    display: flex;    align-items: center;  }}.language{  padding: 1rem;}

@@ -2,22 +2,17 @@ import React, {FunctionComponent} from 'react'
 import {
     AppBar,
     Toolbar,
-    Typography,
     Button,
     Menu,
     MenuItem,
-    IconButton
+    IconButton,
+    Link
 } from "@material-ui/core"
 import {Translate, AccountCircle} from "@material-ui/icons"
 import {useDispatch} from "react-redux"
-import {RouteComponentProps, withRouter} from "react-router-dom"
 import {SETTING, LOGINOUT} from "../../../store/action-types"
 
 import './index.scss';
-
-interface Props extends RouteComponentProps {
-
-}
 
 const routes = [
     {path: '/', name: 'home'},
@@ -47,7 +42,7 @@ const Language = () => {
 
     return (
         <div className="language">
-            <Button onClick={handleClick} style={{color: "#ffffff"}}>
+            <Button aria-controls="simple-menu" onClick={handleClick} style={{color: "#ffffff"}}>
                 <Translate/>
                 <span>Language</span>
             </Button>
@@ -101,33 +96,25 @@ const Profile = () => {
     )
 }
 
-const Header: FunctionComponent<Props> = (props: Props) => {
-    const gotoPage = (path: string) => {
-        props.history.push(path)
-    }
+const Header: FunctionComponent = () => {
 
     return (
-        <div className="header">
-            <AppBar position="static">
-                <Toolbar>
-                    <Typography variant="h6" className="header-logo">
-                        React-cli
-                    </Typography>
-                    <div className={"header-menu"}>
-                        {routes.map((value) => (
-                            <Button onClick={gotoPage(value.path)} key={value.path}>{value.name}</Button>
-                        ))}
-                    </div>
-                    <div className="header-right">
-                        <Language/>
-                        <Profile/>
-                    </div>
-                </Toolbar>
-            </AppBar>
-        </div>
+        <AppBar position="fixed" className="header">
+            <Toolbar>
+                <div className={"header-menu"}>
+                    {routes.map((value: {path: string, name: string}) => (
+                        <Link key={value.path}>{value.name}</Link>
+                    ))}
+                </div>
+                <div className="header-right">
+                    <Language />
+                    <Profile />
+                </div>
+            </Toolbar>
+        </AppBar>
     )
 }
 
-export default withRouter(Header);
+export default Header;
 
 

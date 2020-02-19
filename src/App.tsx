@@ -6,6 +6,8 @@ import {connect} from "react-redux";
 import Header from './components/layout/Header';
 import Main from './components/layout/Main';
 import Footer from './components/layout/Footer';
+import SlideBar from './components/layout/SlideBar'
+import {Grid} from "@material-ui/core"
 
 interface OwnProps {
     language?: any
@@ -23,6 +25,7 @@ const mapPropsToState = (state: State) => {
 }
 
 const App: FunctionComponent<Props> = (props) => {
+
     const getLocalMessage = () => {
         let msg: object
         if (props.language === 'zh-CN' || props.language === 'zh') {
@@ -36,9 +39,11 @@ const App: FunctionComponent<Props> = (props) => {
     return (
         <div className={"App"}>
             <IntlProvider key="intl" locale={props.language} messages={getLocalMessage()}>
-                <Header/>
-                <Main/>
-                <Footer/>
+                <Grid container className="root">
+                    <Header/>
+                    <SlideBar/>
+                    <Main/>
+                </Grid>
             </IntlProvider>
         </div>
     );
