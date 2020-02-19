@@ -1,6 +1,6 @@
 import React, {FunctionComponent} from 'react';
 import {withRouter, RouteComponentProps} from "react-router-dom";
-import {useDispatch} from "react-redux"
+import {useDispatch, connect} from "react-redux"
 import AppBar from "@material-ui/core/AppBar"
 import Toolbar from "@material-ui/core/Toolbar"
 import Button from "@material-ui/core/Button"
@@ -11,14 +11,23 @@ import Link from "@material-ui/core/Link"
 import Typography from "@material-ui/core/Typography"
 import Translate from "@material-ui/icons/Translate"
 import AccountCircle from "@material-ui/icons/AccountCircle"
-import {SETTING, LOGINOUT} from "../../../store/action-types"
+import {SETTING, LOGINOUT, MENU} from "../../../store/action-types"
 import {routes, RoutesConfig} from '../../../routes.config'
 import './index.scss';
 
 interface OwnProps extends RouteComponentProps {
+    list?: []
 }
 
 type Props = OwnProps;
+
+interface State {
+    menu?: object
+}
+
+const mapPropsToState = (state: State) => {
+    return state.menu
+}
 
 // 语言切换
 const Language = () => {
@@ -78,6 +87,7 @@ const Profile = () => {
         dispatch({
             type: LOGINOUT
         })
+        handleClose();
     }
 
     return (
@@ -97,10 +107,29 @@ const Profile = () => {
     )
 }
 
-const Header: FunctionComponent<Props> = (props) => {
+const MenuConfig = (props: Props) => {
+
     const openNewPage = (value: RoutesConfig) => () => {
         props.history.push(value.path)
     }
+
+    const routes = props.list;
+    return(
+        <div>
+            {routes.map((value: RoutesConfig) => (
+                value.path !== '/'
+                    ? <Link key={value.path} onClick={openNewPage(value)}
+                    >{value.name}</Link>
+                    : null
+            ))}
+        </div>
+
+    )
+}
+
+
+
+const Header: FunctionComponent<Props> = (props) => {
 
     return (
         <AppBar position="static" className="header">
@@ -110,12 +139,13 @@ const Header: FunctionComponent<Props> = (props) => {
                     <span>React-cli</span>
                 </Typography>
                 <div className={"header-menu"}>
-                    {routes.map((value: RoutesConfig) => (
-                        value.path !== '/'
-                            ? <Link key={value.path} onClick={openNewPage(value)}
-                            >{value.name}</Link>
-                            : null
-                    ))}
+                    {/*{routes.map((value: RoutesConfig) => (*/}
+                        {/*value.path !== '/'*/}
+                            {/*? <Link key={value.path} onClick={openNewPage(value)}*/}
+                            {/*>{value.name}</Link>*/}
+                            {/*: null*/}
+                    {/*))}*/}
+                    <MenuConfig list={props.list}/>
                 </div>
                 <div className="header-right">
                     <Language/>
@@ -126,6 +156,6 @@ const Header: FunctionComponent<Props> = (props) => {
     )
 }
 
-export default withRouter(Header);
+export default withRouter(connect(mapPropsToState)(Header));
 
 

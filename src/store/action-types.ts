@@ -13,3 +13,6 @@ export const APICATEGORY = {
 /* user profile */
 export const SETTING = 'SETTING'
 export const LOGINOUT = 'LOGINOUT'
+
+/* 菜单 */
+export const MENU = 'MENU'

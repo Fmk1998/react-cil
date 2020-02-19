@@ -42,7 +42,7 @@ const App: FunctionComponent<Props> = (props) => {
             <IntlProvider key="intl" locale={props.language} messages={getLocalMessage()}>
                 <HashRouter>
                     <Header/>
-                    <Grid container spacing={2}>
+                    <Grid container>
                         <Grid item xs={3}>
                             <SlideBar/>
                         </Grid>
