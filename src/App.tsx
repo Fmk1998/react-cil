@@ -39,10 +39,14 @@ const App: FunctionComponent<Props> = (props) => {
     return (
         <div className={"App"}>
             <IntlProvider key="intl" locale={props.language} messages={getLocalMessage()}>
-                <Grid container className="root">
-                    <Header/>
-                    <SlideBar/>
-                    <Main/>
+                <Header/>
+                <Grid container spacing={2}>
+                    <Grid item xs={3}>
+                        <SlideBar/>
+                    </Grid>
+                    <Grid item xs={9}>
+                        <Main/>
+                    </Grid>
                 </Grid>
             </IntlProvider>
         </div>

@@ -6,7 +6,8 @@ import {
     Menu,
     MenuItem,
     IconButton,
-    Link
+    Link,
+    Typography
 } from "@material-ui/core"
 import {Translate, AccountCircle} from "@material-ui/icons"
 import {useDispatch} from "react-redux"
@@ -99,8 +100,12 @@ const Profile = () => {
 const Header: FunctionComponent = () => {
 
     return (
-        <AppBar position="fixed" className="header">
+        <AppBar position="static" className="header">
             <Toolbar>
+                <Typography variant="h5" className="header-logo">
+                    <img src={require("../../../assets/logo.png")} alt=""/>
+                    <span>React-cli</span>
+                </Typography>
                 <div className={"header-menu"}>
                     {routes.map((value: {path: string, name: string}) => (
                         <Link key={value.path}>{value.name}</Link>
