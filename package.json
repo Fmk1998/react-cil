@@ -4,6 +4,8 @@
   "private": true,
   "author": "chenxi",
   "dependencies": {
+    "@material-ui/core": "^4.7.0",
+    "@material-ui/icons": "^4.5.1",
     "axios": "^0.19.0",
     "js-cookie": "^2.2.1",
     "lodash": "^4.17.15",
@@ -25,7 +27,7 @@
     "redux-thunk": "^2.3.0"
   },
   "scripts": {
-    "start": "node run dev && cross-env PORT=8089 react-app-rewired start",
+    "start": "node run dev && cross-env PORT=8088 react-app-rewired start",
     "build": "node run && react-app-rewired build",
     "test": "react-app-rewired test",
     "eject": "react-scripts eject"
@@ -51,8 +53,6 @@
     ]
   },
   "devDependencies": {
-    "@material-ui/core": "^4.7.0",
-    "@material-ui/icons": "^4.5.1",
     "@types/jest": "24.0.23",
     "@types/js-cookie": "^2.2.4",
     "@types/lodash": "^4.14.149",

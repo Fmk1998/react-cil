@@ -1,13 +1,14 @@
 import React, {FunctionComponent} from 'react';
 import {IntlProvider} from 'react-intl' // 国际化
 import language from './lang'
-import './styles/normalize.scss'
 import {connect} from "react-redux";
+import {HashRouter} from 'react-router-dom'
+import {Grid} from "@material-ui/core"
 import Header from './components/layout/Header';
 import Main from './components/layout/Main';
-import Footer from './components/layout/Footer';
+// import Footer from './components/layout/Footer';
 import SlideBar from './components/layout/SlideBar'
-import {Grid} from "@material-ui/core"
+import './styles/normalize.scss'
 
 interface OwnProps {
     language?: any
@@ -39,11 +40,13 @@ const App: FunctionComponent<Props> = (props) => {
     return (
         <div className={"App"}>
             <IntlProvider key="intl" locale={props.language} messages={getLocalMessage()}>
-                <Grid container className="root">
-                    <Header/>
-                    <SlideBar/>
-                    <Main/>
-                </Grid>
+                <HashRouter>
+                    <Grid container className="root">
+                        <Header/>
+                        <SlideBar/>
+                        <Main/>
+                    </Grid>
+                </HashRouter>
             </IntlProvider>
         </div>
     );

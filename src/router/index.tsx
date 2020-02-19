@@ -1,6 +1,6 @@
-import React, {Suspense} from "react";
+import React, {Suspense, Fragment} from "react";
 import {renderRoutes} from "react-router-config";
-import {HashRouter, Switch} from "react-router-dom";
+import {Switch} from "react-router-dom";
 import routes from "../routes.config";
 import Loading from '../components/loading/global'
 
@@ -8,15 +8,13 @@ import Loading from '../components/loading/global'
 export class DynamicRouter extends React.Component {
     render(): React.ReactNode {
         return (
-            <HashRouter>
+            <Fragment>
                 <Suspense fallback={Loading}>
                     <Switch>
-                        {/*<Route exact path="/" component={Home}/>*/}
-                        {/*<Route path="/about" component={About}/>*/}
                         {renderRoutes(routes)}
                     </Switch>
                 </Suspense>
-            </HashRouter>
+            </Fragment>
         );
     }
 }

@@ -1,15 +1,18 @@
 import React, {lazy} from "react";
 import {Redirect} from "react-router-dom";
-// import Lazy from "./router/lazy"; // 懒加载模块
 
 const Home = lazy(() => import(/* webpackChunkName: 'Home' */ './views/HelloWorld/index'));
 const About = lazy(() => import(/* webpackChunkName: 'About' */ './views/HelloWorld/about'));
 
+export interface RoutesConfig {
+    path: string;
+    name: string;
+}
+
 export const routes = [
-    {path: "/", exact: true, render: () => <Redirect to={"/home"}/>},
-    // {path: "/home", component: Lazy(() => import('./views/HelloWorld/index'))},
-    {path: "/home", component: Home},
-    {path: "/about", component: About},
+    {path: "/", exact: true, name: '/', render: () => <Redirect to={"/home"}/>},
+    {path: "/home", name: '首页', component: Home},
+    {path: "/about", name: '关于', component: About},
 ];
 
 export default routes;

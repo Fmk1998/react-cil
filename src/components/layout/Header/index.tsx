@@ -1,4 +1,4 @@
-import React, {FunctionComponent} from 'react'
+import React, {FunctionComponent} from 'react';
 import {
     AppBar,
     Toolbar,
@@ -10,14 +10,15 @@ import {
 } from "@material-ui/core"
 import {Translate, AccountCircle} from "@material-ui/icons"
 import {useDispatch} from "react-redux"
+import {withRouter, RouteComponentProps} from "react-router-dom";
 import {SETTING, LOGINOUT} from "../../../store/action-types"
-
+import {routes, RoutesConfig} from '../../../routes.config'
 import './index.scss';
 
-const routes = [
-    {path: '/', name: 'home'},
-    {path: '/about', name: 'about'}
-]
+interface OwnProps extends RouteComponentProps {
+}
+
+type Props = OwnProps;
 
 // 语言切换
 const Language = () => {
@@ -96,25 +97,33 @@ const Profile = () => {
     )
 }
 
-const Header: FunctionComponent = () => {
+const Header: FunctionComponent<Props> = (props) => {
+    const openNewPage = (value: RoutesConfig) => {
+        console.log(value)
+        // props.history.push(value.path)
+    }
 
     return (
         <AppBar position="fixed" className="header">
             <Toolbar>
                 <div className={"header-menu"}>
-                    {routes.map((value: {path: string, name: string}) => (
-                        <Link key={value.path}>{value.name}</Link>
+                    {routes.map((value: RoutesConfig) => (
+                        value.path !== '/'
+                            ? <Link key={value.path}
+                                    onClick={(value: any) => openNewPage(value)}
+                            >{value.name}</Link>
+                            : null
                     ))}
                 </div>
                 <div className="header-right">
-                    <Language />
-                    <Profile />
+                    <Language/>
+                    <Profile/>
                 </div>
             </Toolbar>
         </AppBar>
     )
 }
 
-export default Header;
+export default withRouter(Header);
 
 
