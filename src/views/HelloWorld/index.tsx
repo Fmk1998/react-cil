@@ -1,13 +1,27 @@
-import React from 'react'
+import React, {FunctionComponent} from 'react';
+import Button from 'para-ui/core/Button';
+import {withRouter, RouteComponentProps} from 'react-router-dom'
 import './index.scss';
 
-class HelloWord extends React.Component {
-    render(): React.ReactNode {
-        return <div className="hollo-world">
-            <div>Hello Word</div>
-            <div>ParaView React-CLI</div>
-        </div>
-    }
+
+interface OwnProps extends RouteComponentProps {
 }
 
-export default HelloWord
+type Props = OwnProps;
+
+const HelloWord: FunctionComponent<Props> = (props) => {
+    const toNewPage = () => {
+        props.history.push('/about')
+    }
+    return (
+        <div className="hollo-world">
+            <div>Hello Word</div>
+            <div>ParaView React-CLI</div>
+            <Button variant="contained" color="primary" onClick={toNewPage}>
+                跳转到关于
+            </Button>
+        </div>
+    );
+};
+
+export default withRouter(HelloWord);
