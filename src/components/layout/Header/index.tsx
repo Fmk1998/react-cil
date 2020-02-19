@@ -1,17 +1,16 @@
 import React, {FunctionComponent} from 'react';
-import {
-    AppBar,
-    Toolbar,
-    Button,
-    Menu,
-    MenuItem,
-    IconButton,
-    Link,
-    Typography
-} from "@material-ui/core"
-import {Translate, AccountCircle} from "@material-ui/icons"
-import {useDispatch} from "react-redux"
 import {withRouter, RouteComponentProps} from "react-router-dom";
+import {useDispatch} from "react-redux"
+import AppBar from "@material-ui/core/AppBar"
+import Toolbar from "@material-ui/core/Toolbar"
+import Button from "@material-ui/core/Button"
+import Menu from "@material-ui/core/Menu"
+import MenuItem from "@material-ui/core/MenuItem"
+import IconButton from "@material-ui/core/IconButton"
+import Link from "@material-ui/core/Link"
+import Typography from "@material-ui/core/Typography"
+import Translate from "@material-ui/icons/Translate"
+import AccountCircle from "@material-ui/icons/AccountCircle"
 import {SETTING, LOGINOUT} from "../../../store/action-types"
 import {routes, RoutesConfig} from '../../../routes.config'
 import './index.scss';

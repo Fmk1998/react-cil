@@ -3,7 +3,7 @@ import {IntlProvider} from 'react-intl' // 国际化
 import language from './lang'
 import {connect} from "react-redux";
 import {HashRouter} from 'react-router-dom'
-import {Grid} from "@material-ui/core"
+import Grid from "@material-ui/core/Grid"
 import Header from './components/layout/Header';
 import Main from './components/layout/Main';
 // import Footer from './components/layout/Footer';
