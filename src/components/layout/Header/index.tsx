@@ -11,6 +11,7 @@ import Link from "@material-ui/core/Link"
 import Typography from "@material-ui/core/Typography"
 import Translate from "@material-ui/icons/Translate"
 import AccountCircle from "@material-ui/icons/AccountCircle"
+import {Get} from 'para-lib'
 import {SETTING, LOGINOUT} from "../../../store/action-types"
 import {RoutesConfig} from '../../../routes.config'
 import './index.scss';
@@ -25,7 +26,7 @@ interface State {
     menu?: object
 }
 
-const mapPropsToState = (state: {menu: State}) => {
+const mapPropsToState = (state: { menu: State }) => {
     return state.menu
 }
 
@@ -109,8 +110,12 @@ const Profile = () => {
 
 
 const Header: FunctionComponent<Props> = (props) => {
-    const openNewPage = (value: RoutesConfig) => () => {
+    const openNewPage = (value: RoutesConfig) => async () => {
         props.history.push(value.path)
+        const {data, err} = await Get({
+            url: 'http://192.168.1.111/selfService/getMenus',
+        })
+        console.log(data, err)
     }
     return (
         <AppBar position="static" className="header">
