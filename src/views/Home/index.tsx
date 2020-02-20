@@ -1,24 +1,42 @@
 import React, {FunctionComponent} from 'react';
-import Button from '@material-ui/core/Button';
+import Iframe from 'react-iframe'
+import {connect} from 'react-redux'
 import {withRouter, RouteComponentProps} from 'react-router-dom'
+import Api from '../../config/api.config'
 import './index.scss';
 
 
 interface OwnProps extends RouteComponentProps {
+    currentMenu?: string
 }
 
 type Props = OwnProps;
 
-const HelloWord: FunctionComponent<Props> = (props) => {
-    const toNewPage = () => {
-        props.history.push('/about')
+interface State {
+    menu?: {
+        currentMenu?: string
     }
+}
+
+const mapStateToProps = (state: State) => {
+    return {
+        currentMenu: state.menu?.currentMenu
+    }
+}
+const Home: FunctionComponent<Props> = (props) => {
     return (
-        <div className="hollo-world">
-            <div>Hello Word</div>
-            <div>ParaView React-CLI</div>
+        <div className="common-iframe">
+            {
+                props.currentMenu
+                    ? <Iframe url={`${Api.iframeUrl}/${props.currentMenu}`}
+                              id="myId"
+                              className="common-iframe-wallpaper"
+                              display="inline"
+                              position="relative"/>
+                    : <span>页面跑丢了,需要添加后续逻辑</span>
+            }
         </div>
     );
 };
 
-export default withRouter(HelloWord);
+export default withRouter(connect(mapStateToProps, null)(Home));

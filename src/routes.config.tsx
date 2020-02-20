@@ -4,9 +4,11 @@ import {Redirect} from "react-router-dom";
 const Home = lazy(() => import(/* webpackChunkName: 'Home' */ './views/Home/index'));
 const Introduce = lazy(() => import(/* webpackChunkName: 'About' */ './views/Introduce/index'));
 
-export interface RoutesConfig {
-    path: string;
-    name: string;
+export enum RoutesMapping {
+    key = 'id',
+    path = 'menuPath',
+    name = 'menuName',
+    url = 'menuUrl'
 }
 
 export const routes = [

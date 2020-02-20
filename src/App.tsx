@@ -44,7 +44,7 @@ const App: FunctionComponent<Props> = (props) => {
                     <Header/>
                     <Grid container>
                         <Grid item xs={3}>
-                            <SlideBar/>
+                            <SlideBar sideList={[]}/>
                         </Grid>
                         <Grid item xs={9}>
                             <Main/>

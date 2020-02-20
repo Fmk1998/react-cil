@@ -6,7 +6,6 @@ import {getCookie} from '../utils/echo'
 NProgress.configure({showSpinner: false});
 
 let token = getCookie(PROJECT); // cookie拿不到就从本地存储拿
-console.log('token:', token);
 
 axios.interceptors.request.use(function (config) {
     // 在发送请求之前做些什么
@@ -27,12 +26,10 @@ axios.interceptors.request.use(function (config) {
 axios.interceptors.response.use(function (response) {
     // 对响应数据做点什么
     // NProgress.start();
-    console.log('response', response)
     return response;
 }, function (error) {
     // 对响应错误做点什么
     // NProgress.done()
-    console.log('error', error)
     return Promise.reject(error);
 });
 export default axios

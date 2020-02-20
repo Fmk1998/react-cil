@@ -1,4 +1,4 @@
-import React, {FunctionComponent} from 'react';
+import React, {FunctionComponent, useEffect} from 'react';
 import {withRouter, RouteComponentProps} from "react-router-dom";
 import {useDispatch, connect} from "react-redux"
 import AppBar from "@material-ui/core/AppBar"
@@ -11,8 +11,9 @@ import Link from "@material-ui/core/Link"
 import Typography from "@material-ui/core/Typography"
 import Translate from "@material-ui/icons/Translate"
 import AccountCircle from "@material-ui/icons/AccountCircle"
-import {SETTING, LOGINOUT} from "../../../store/action-types"
-import {RoutesConfig} from '../../../routes.config'
+import {SETTING, LOGINOUT, SIDEBAR, PROJECT} from "../../../store/action-types"
+import {RoutesMapping} from '../../../routes.config'
+import {queryMenusAction} from "../../../store/actions/menuAction";
 import './index.scss';
 
 interface OwnProps extends RouteComponentProps {
@@ -107,23 +108,39 @@ const Profile = () => {
     )
 }
 
-
 const Header: FunctionComponent<Props> = (props) => {
-    const openNewPage = (value: RoutesConfig) => async () => {
-        props.history.push(value.path)
+    const dispatch = useDispatch();
+    // 请求菜单数据
+    useEffect(() => {
+        dispatch(queryMenusAction())
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
+
+    const openNewPage = (value: any) => () => {
+        if (value.children) {
+            //    有下级菜单
+            dispatch({
+                type: SIDEBAR,
+                payload: value.children
+            })
+        } else {
+            dispatch({
+                type: SIDEBAR,
+                payload: []
+            })
+        }
     }
     return (
         <AppBar position="static" className="header">
             <Toolbar>
                 <Typography variant="h5" className="header-logo">
                     <img src={require("../../../assets/logo.png")} alt=""/>
-                    <span>React-cli</span>
+                    <span>{PROJECT}</span>
                 </Typography>
                 <div className={"header-menu"}>
-                    {props.list && props.list.map((value: RoutesConfig) => (
-                        value.path !== '/'
-                            ? <Link key={value.path} onClick={openNewPage(value)}
-                            >{value.name}</Link>
+                    {props.list && props.list.map((value: any, index: number) => (
+                        value[RoutesMapping.path] !== '/'
+                            ? <Link key={index} onClick={openNewPage(value)}>{value[RoutesMapping.name]}</Link>
                             : null
                     ))}
                 </div>
@@ -135,7 +152,6 @@ const Header: FunctionComponent<Props> = (props) => {
         </AppBar>
     )
 }
-
-export default withRouter(connect(mapPropsToState)(Header));
+export default withRouter(connect(mapPropsToState, null)(Header));
 
 

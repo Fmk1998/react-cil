@@ -3,6 +3,6 @@ import Api from '../config/api.config'
 
 export const queryMenus = () => {
     return Get({
-        url: ''
+        url: Api.menu
     })
 }
