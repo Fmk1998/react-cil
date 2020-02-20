@@ -11,8 +11,8 @@ import Link from "@material-ui/core/Link"
 import Typography from "@material-ui/core/Typography"
 import Translate from "@material-ui/icons/Translate"
 import AccountCircle from "@material-ui/icons/AccountCircle"
-import {SETTING, LOGINOUT, MENU} from "../../../store/action-types"
-import {routes, RoutesConfig} from '../../../routes.config'
+import {SETTING, LOGINOUT} from "../../../store/action-types"
+import {RoutesConfig} from '../../../routes.config'
 import './index.scss';
 
 interface OwnProps extends RouteComponentProps {
@@ -25,7 +25,7 @@ interface State {
     menu?: object
 }
 
-const mapPropsToState = (state: State) => {
+const mapPropsToState = (state: {menu: State}) => {
     return state.menu
 }
 
@@ -107,30 +107,11 @@ const Profile = () => {
     )
 }
 
-const MenuConfig = (props: Props) => {
 
+const Header: FunctionComponent<Props> = (props) => {
     const openNewPage = (value: RoutesConfig) => () => {
         props.history.push(value.path)
     }
-
-    const routes = props.list;
-    return(
-        <div>
-            {routes.map((value: RoutesConfig) => (
-                value.path !== '/'
-                    ? <Link key={value.path} onClick={openNewPage(value)}
-                    >{value.name}</Link>
-                    : null
-            ))}
-        </div>
-
-    )
-}
-
-
-
-const Header: FunctionComponent<Props> = (props) => {
-
     return (
         <AppBar position="static" className="header">
             <Toolbar>
@@ -139,13 +120,12 @@ const Header: FunctionComponent<Props> = (props) => {
                     <span>React-cli</span>
                 </Typography>
                 <div className={"header-menu"}>
-                    {/*{routes.map((value: RoutesConfig) => (*/}
-                        {/*value.path !== '/'*/}
-                            {/*? <Link key={value.path} onClick={openNewPage(value)}*/}
-                            {/*>{value.name}</Link>*/}
-                            {/*: null*/}
-                    {/*))}*/}
-                    <MenuConfig list={props.list}/>
+                    {props.list && props.list.map((value: RoutesConfig) => (
+                        value.path !== '/'
+                            ? <Link key={value.path} onClick={openNewPage(value)}
+                            >{value.name}</Link>
+                            : null
+                    ))}
                 </div>
                 <div className="header-right">
                     <Language/>
