@@ -12,7 +12,7 @@ import Typography from "@material-ui/core/Typography"
 import Translate from "@material-ui/icons/Translate"
 import AccountCircle from "@material-ui/icons/AccountCircle"
 import {SETTING, LOGINOUT, SIDEBAR, PROJECT} from "../../../store/action-types"
-import {RoutesMapping} from '../../../routes.config'
+import {RoutesMapping, routes} from '../../../routes.config'
 import {queryMenusAction} from "../../../store/actions/menuAction";
 import './index.scss';
 
@@ -110,25 +110,9 @@ const Profile = () => {
 
 const Header: FunctionComponent<Props> = (props) => {
     const dispatch = useDispatch();
-    // 请求菜单数据
-    useEffect(() => {
-        dispatch(queryMenusAction())
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
 
     const openNewPage = (value: any) => () => {
-        if (value.children) {
-            //    有下级菜单
-            dispatch({
-                type: SIDEBAR,
-                payload: value.children
-            })
-        } else {
-            dispatch({
-                type: SIDEBAR,
-                payload: []
-            })
-        }
+       props.history.push(value)
     }
     return (
         <AppBar position="static" className="header">
@@ -139,8 +123,8 @@ const Header: FunctionComponent<Props> = (props) => {
                 </Typography>
                 <div className={"header-menu"}>
                     {props.list && props.list.map((value: any, index: number) => (
-                        value[RoutesMapping.path] !== '/'
-                            ? <Link key={index} onClick={openNewPage(value)}>{value[RoutesMapping.name]}</Link>
+                        value.path !== '/'
+                            ? <Link key={index} onClick={openNewPage(value.path)}>{value.name}</Link>
                             : null
                     ))}
                 </div>

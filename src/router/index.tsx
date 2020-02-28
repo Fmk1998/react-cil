@@ -1,8 +1,10 @@
-import React, {Suspense, Fragment} from "react";
+import React, {Suspense, Fragment, lazy} from "react";
 import {renderRoutes} from "react-router-config";
-import {Switch} from "react-router-dom";
-import routes from "../routes.config";
+import {Route, Switch} from "react-router-dom";
+import {routes, RoutesMapping} from "../routes.config";
 import Loading from '../components/loading/global'
+
+const lazyImport = (path: string) => lazy(() => import(`../views/${path}`));
 
 // 异步渲染路由
 export class DynamicRouter extends React.Component {
@@ -11,7 +13,18 @@ export class DynamicRouter extends React.Component {
             <Fragment>
                 <Suspense fallback={Loading}>
                     <Switch>
-                        {renderRoutes(routes)}
+                        <Route exact path="/" component={lazyImport('home/index')} />
+                        {/*{renderRoutes(routes)}*/}
+                        {
+                            // routes.map((value: any, index: number) => (
+                            //     <Route key={index} path={value[RoutesMapping.url]}
+                            //            component={lazyImport('home/index')}/>
+                            // ))
+                            // routes.map((value: any, index: number) => (
+                            //     <Route key={index} path={value[RoutesMapping.url]}
+                            //            component={lazyImport(`${value.name}`)}/>
+                            // ))
+                        }
                     </Switch>
                 </Suspense>
             </Fragment>

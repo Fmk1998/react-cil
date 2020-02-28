@@ -1,5 +1,4 @@
 import React, {FunctionComponent} from 'react';
-import Iframe from 'react-iframe'
 import {connect} from 'react-redux'
 import {withRouter, RouteComponentProps} from 'react-router-dom'
 import Api from '../../config/api.config'
@@ -28,11 +27,7 @@ const Home: FunctionComponent<Props> = (props) => {
         <div className="common-iframe">
             {
                 props.currentMenu
-                    ? <Iframe url={`${Api.iframeUrl}/${props.currentMenu}`}
-                              id="myId"
-                              className="common-iframe-wallpaper"
-                              display="inline"
-                              position="relative"/>
+                    ? <span>{props.currentMenu}</span>
                     : <span>页面跑丢了,需要添加后续逻辑</span>
             }
         </div>

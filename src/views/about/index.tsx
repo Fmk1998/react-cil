@@ -7,12 +7,12 @@ interface OwnProps extends RouteComponentProps {
 
 type Props = OwnProps;
 
-const HelloWord: FunctionComponent<Props> = (props) => {
+const About: FunctionComponent = () => {
     return (
-        <div className="introduce">
-           <h3>简介</h3>
+        <div className="about">
+           <h3>about</h3>
         </div>
     );
 };
 
-export default withRouter(HelloWord);
+export default withRouter(About);
