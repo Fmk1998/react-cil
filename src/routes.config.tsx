@@ -1,8 +1,6 @@
-import React from "react"
-
 export enum RoutesMapping {
     key = 'id',
     path = 'menuPath',
-    name = 'menuName',
+    // name = 'menuName',
     url = 'menuUrl'
 }

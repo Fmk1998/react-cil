@@ -1,31 +1,52 @@
-import React, {Suspense, Fragment, lazy} from "react";
-import {Route, Switch} from "react-router-dom";
+import React, {Suspense, Fragment, lazy, FunctionComponent} from "react";
+import {Switch, Route} from "react-router-dom";
+import {connect} from 'react-redux'
 import Loading from '../components/loading/global'
+import {ConnectedRouter} from 'connected-react-router'
+// import {RoutesMapping} from "../routes.config"; // 动态路由映射枚举
+import {history} from '../store'
 
 const lazyImport = (path: string) => lazy(() => import(`../views/${path}`));
 
 // 异步渲染路由
-export class DynamicRouter extends React.Component {
-    render(): React.ReactNode {
-        return (
-            <Fragment>
-                <Suspense fallback={Loading}>
-                    <Switch>
-                        <Route exact path="/" component={lazyImport('home/index')} />
-                        {/*{renderRoutes(routes)}*/}
-                        {
-                            // routes.map((value: any, index: number) => (
-                            //     <Route key={index} path={value[RoutesMapping.url]}
-                            //            component={lazyImport('home/index')}/>
-                            // ))
-                        }
-                    </Switch>
-                </Suspense>
-            </Fragment>
-        );
+interface OwnProps {
+    list?: []
+}
+
+type Props = OwnProps;
+
+interface State {
+    menu?: {
+        threeDupMenu?: []
     }
 }
 
-export default DynamicRouter;
+const mapStateToProps = (state: State) => ({
+    list: state.menu?.threeDupMenu
+})
+
+const DynamicRouter: FunctionComponent<Props> = (props) => {
+    // console.log('props.list', props)
+
+    return (
+        <Fragment>
+            <Suspense fallback={Loading}>
+                <ConnectedRouter history={history}>
+                    <Switch>
+                        <Route exact path="/" component={lazyImport('home/index')}/>
+                        {/*{*/}
+                            {/*props.list?.map((value: any, index: number) => (*/}
+                                {/*<Route key={index} path={value[RoutesMapping.url]}*/}
+                                       {/*component={lazyImport('home/index')}/>*/}
+                            {/*))*/}
+                        {/*}*/}
+                    </Switch>
+                </ConnectedRouter>
+            </Suspense>
+        </Fragment>
+    );
+};
+
+export default connect(mapStateToProps, null)(DynamicRouter);
 
 

@@ -1,8 +1,12 @@
 import {combineReducers} from 'redux'
+import {connectRouter} from 'connected-react-router'
 import setting from './settingReducer'
 import menu from './menuReducer'
 
-export default combineReducers({
+const createRootReducer = (history: any) => combineReducers({
+    router: connectRouter(history),
     setting,
-    menu
+    menu,
 })
+
+export default createRootReducer

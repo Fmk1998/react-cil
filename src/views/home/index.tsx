@@ -1,7 +1,7 @@
 import React, {FunctionComponent} from 'react';
 import {connect} from 'react-redux'
 import {withRouter, RouteComponentProps} from 'react-router-dom'
-import Api from '../../config/api.config'
+// import Api from '../../config/api.config'
 import './index.scss';
 
 
