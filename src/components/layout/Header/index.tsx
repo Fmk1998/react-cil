@@ -12,7 +12,7 @@ import Typography from "@material-ui/core/Typography"
 import Translate from "@material-ui/icons/Translate"
 import AccountCircle from "@material-ui/icons/AccountCircle"
 import {SETTING, LOGINOUT, SIDEBAR, PROJECT} from "../../../store/action-types"
-import {RoutesMapping, routes} from '../../../routes.config'
+import {RoutesMapping} from '../../../routes.config'
 import {queryMenusAction} from "../../../store/actions/menuAction";
 import './index.scss';
 
