@@ -1,6 +1,6 @@
 import React, {FunctionComponent} from "react";
 import {IntlProvider} from "react-intl"; // 国际化
-import language from "./lang";
+import Lang from "./lang";
 import {connect} from "react-redux";
 import {HashRouter} from "react-router-dom";
 import Grid from "@material-ui/core/Grid";
@@ -32,9 +32,9 @@ const App: FunctionComponent<Props> = ({history, language}: Props) => {
     const getLocalMessage = () => {
         let msg: object;
         if (language === "zh-CN" || language === "zh") {
-            msg = language.zh;
+            msg = Lang.zh;
         } else {
-            msg = language.en;
+            msg = Lang.en;
         }
         return {...msg};
     };
