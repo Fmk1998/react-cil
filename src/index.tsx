@@ -1,25 +1,25 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import {Provider} from 'react-redux'
-import {store, persistor} from './store' // 数据仓库
-import {PersistGate} from 'redux-persist/integration/react' // 持久化存储
-import App from './App';
-import * as serviceWorker from './serviceWorker';
-import {createMuiTheme} from '@material-ui/core/styles';
-import {ThemeProvider} from '@material-ui/styles'
-import blue from '@material-ui/core/colors/blue';
+import React from "react";
+import ReactDOM from "react-dom";
+import {Provider} from "react-redux";
+import {store, persistor, history} from "./store"; // 数据仓库
+import {PersistGate} from "redux-persist/integration/react"; // 持久化存储
+import App from "./App";
+import * as serviceWorker from "./serviceWorker";
+import {createMuiTheme} from "@material-ui/core/styles";
+import {ThemeProvider} from "@material-ui/styles";
+import blue from "@material-ui/core/colors/blue";
 /* @dynamic debug */
-import {Debugger} from 'para-lib';
+import {Debugger} from "para-lib";
 /* @dynamic end */
 declare let window: Window & { ParaWeb: any };
 /* @dynamic version */
-window.ParaWeb = {version: '0.1.0', env: 'dev', buildTime: '3/5/2020, 9:59:33 AM'}
+window.ParaWeb = {version: "0.1.0", env: "dev", buildTime: "3/5/2020, 9:59:33 AM"};
 /* @dynamic end */
 
 const theme = createMuiTheme({
     palette: {
-        primary: blue,
-    },
+        primary: blue
+    }
     // palette: {
     //     primary: {
     //         // light: will be calculated from palette.primary.main,
@@ -41,7 +41,7 @@ const theme = createMuiTheme({
     //     // E.g., shift from Red 500 to Red 300 or Red 700.
     //     tonalOffset: 0.2,
     // },
-})
+});
 const init = async (debug: Array<string> = []) => {
     /* @dynamic Debugger */
     await Debugger.init(debug);
@@ -50,15 +50,15 @@ const init = async (debug: Array<string> = []) => {
         <Provider store={store}>
             <PersistGate persistor={persistor} loading={null}>
                 <ThemeProvider theme={theme}>
-                    <App/>
+                    <App history={history}/>
                 </ThemeProvider>
             </PersistGate>
         </Provider>,
-        document.getElementById('root')
+        document.getElementById("root")
     );
     serviceWorker.unregister();
-}
+};
 
 /* @dynamic init */
-init(["http://192.168.2.241:10000"])
+init(["http://192.168.2.241:10000"]);
 /* @dynamic end */

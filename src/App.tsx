@@ -7,10 +7,14 @@ import Grid from "@material-ui/core/Grid";
 import Header from "./components/layout/Header";
 import Main from "./components/layout/Main";
 import SlideBar from "./components/layout/SlideBar";
+import {ConnectedRouter} from "connected-react-router";
+import {History} from "history";
+import MyErrorBoundary from "./components/error/ErrorBoundary";
 import "./styles/normalize.scss";
 
 interface OwnProps {
-    language?: any
+    language?: any,
+    history: History
 }
 
 interface State {
@@ -24,11 +28,10 @@ const mapPropsToState = (state: State) => {
     return state.setting;
 };
 
-const App: FunctionComponent<Props> = (props) => {
-
+const App: FunctionComponent<Props> = ({history, language}: Props) => {
     const getLocalMessage = () => {
         let msg: object;
-        if (props.language === "zh-CN" || props.language === "zh") {
+        if (language === "zh-CN" || language === "zh") {
             msg = language.zh;
         } else {
             msg = language.en;
@@ -37,21 +40,23 @@ const App: FunctionComponent<Props> = (props) => {
     };
 
     return (
-        <div className={"App"}>
-            <IntlProvider key="intl" locale={props.language} messages={getLocalMessage()}>
+        <MyErrorBoundary>
+            <ConnectedRouter history={history}>
                 <HashRouter>
-                    <Header/>
-                    <Grid container>
-                        <Grid item xs={3}>
-                            <SlideBar list={[]}/>
+                    <IntlProvider key="intl" locale={language} messages={getLocalMessage()}>
+                        <Header/>
+                        <Grid container>
+                            <Grid item xs={3}>
+                                <SlideBar list={[]}/>
+                            </Grid>
+                            <Grid item xs={9}>
+                                <Main/>
+                            </Grid>
                         </Grid>
-                        <Grid item xs={9}>
-                            <Main/>
-                        </Grid>
-                    </Grid>
+                    </IntlProvider>
                 </HashRouter>
-            </IntlProvider>
-        </div>
+            </ConnectedRouter>
+        </MyErrorBoundary>
     );
 };
 
