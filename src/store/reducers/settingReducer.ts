@@ -1,10 +1,10 @@
 import {
     SETTING
-} from '../action-types'
+} from "../action-types";
 
 const initState: any = {
-    language: 'zh'
-}
+    language: "zh"
+};
 export default function settingReducer(state = initState, action: any) {
     switch (action.type) {
         case SETTING:

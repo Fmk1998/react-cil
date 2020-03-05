@@ -1,8 +1,8 @@
-import React, {FunctionComponent} from 'react';
-import {connect} from 'react-redux'
-import {withRouter, RouteComponentProps} from 'react-router-dom'
+import React, {FunctionComponent} from "react";
+import {connect} from "react-redux";
+import {withRouter, RouteComponentProps} from "react-router-dom";
 // import Api from '../../config/api.config'
-import './index.scss';
+import "./index.scss";
 
 
 interface OwnProps extends RouteComponentProps {
@@ -20,8 +20,8 @@ interface State {
 const mapStateToProps = (state: State) => {
     return {
         currentMenu: state.menu?.currentMenu
-    }
-}
+    };
+};
 const Home: FunctionComponent<Props> = (props) => {
     return (
         <div className="common-iframe">
