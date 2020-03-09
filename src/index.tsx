@@ -9,11 +9,11 @@ import {createMuiTheme} from "@material-ui/core/styles";
 import {ThemeProvider} from "@material-ui/styles";
 import blue from "@material-ui/core/colors/blue";
 /* @dynamic debug */
-import {Debugger} from "para-lib";
+import {Debugger} from 'para-lib';
 /* @dynamic end */
 declare let window: Window & { ParaWeb: any };
 /* @dynamic version */
-window.ParaWeb = {version: "0.1.0", env: "dev", buildTime: "3/5/2020, 9:59:33 AM"};
+window.ParaWeb = {version: '0.1.0', env: 'dev', buildTime: '3/9/2020, 4:28:56 PM'}
 /* @dynamic end */
 
 const theme = createMuiTheme({
@@ -60,5 +60,5 @@ const init = async (debug: Array<string> = []) => {
 };
 
 /* @dynamic init */
-init(["http://192.168.2.241:10000"]);
+init(["http://192.168.2.241:10000"])
 /* @dynamic end */

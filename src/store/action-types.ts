@@ -1,5 +1,5 @@
-export const PROJECTFIX = "Para";
-export const PROJECTEND = "View";
+export const PROJECTFIX = "React";
+export const PROJECTEND = "Cli";
 export const PROJECT = `${PROJECTFIX}${PROJECTEND}`; // 项目的key
 
 /* Project */
