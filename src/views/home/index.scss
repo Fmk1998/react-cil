@@ -1,0 +1,11 @@
+.home-iframe {
+  font-size: 25px;
+  font-weight: bold;
+  margin-bottom: 10%;
+
+  iframe {
+    border: none;
+    width: 100%;
+    height: calc(100vh - 64px);
+  }
+}

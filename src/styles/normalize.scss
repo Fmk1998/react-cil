@@ -1,0 +1,46 @@
+@import "styles";
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body, html {
+  height: 100%;
+}
+
+a {
+  text-decoration: none;
+}
+
+ul, li {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  padding-inline-start: 0 !important;
+}
+
+p {
+  margin: 0;
+}
+
+::-webkit-scrollbar-track-piece {
+  background: #d3dce6;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #99a9bf;
+  border-radius: 20px;
+}
+
+#nprogress {
+  .bar, .spinner {
+    z-index: 999999999;
+  }
+
+}

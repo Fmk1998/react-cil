@@ -1,0 +1,14 @@
+body {
+  background: #f0f2f5;
+  color: #000;
+  box-sizing: border-box;
+  font-family: "Roboto";
+}
+#root, .App{
+  height: 100%;
+}
+.App{
+  padding-left: 300px;
+  padding-top: 64px;
+  height: 100%;
+}
