@@ -1,6 +1,6 @@
 import React, {FunctionComponent} from "react";
 import {IntlProvider} from "react-intl"; // 国际化
-import Lang from "./lang";
+import Lang from "./locale";
 import {connect} from "react-redux";
 import {HashRouter} from "react-router-dom";
 import Grid from "@material-ui/core/Grid";

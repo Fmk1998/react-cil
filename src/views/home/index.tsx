@@ -1,7 +1,9 @@
 import React, {FunctionComponent} from "react";
 import {connect} from "react-redux";
 import {withRouter, RouteComponentProps} from "react-router-dom";
-import {ParaTable} from "../../components/ParaUI";
+import {ParaTable, ParaTree, TreeNode} from "../../components/ParaUI";
+import Paper from "@material-ui/core/Paper";
+import Table from "@material-ui/core/Table";
 import Api from "../../config/api.config";
 import "./index.scss";
 
@@ -22,6 +24,7 @@ const mapStateToProps = (state: State) => {
         currentMenu: state.menu?.currentMenu
     };
 };
+
 const CONFIG = {
     url: Api.testTable,
     ctx: "osc",
@@ -56,8 +59,39 @@ const CONFIG = {
                     }
                 }]
         }
-    ]
+    ],
+    externals: (scope: any) => <span>{JSON.stringify(scope)}</span>
 };
+
+const treeData = [
+    {
+        key: "0-0",
+        title: "parent 1",
+        children: [
+            {
+                key: "0-0-0",
+                title: "parent 1-1",
+                children: [{key: "0-0-0-0", title: "parent 1-1-0"}]
+            },
+            {
+                key: "0-0-1",
+                title: "parent 1-2",
+                children:
+                    [{
+                        key: "0-0-1-0",
+                        title: "parent 1-2-0",
+                        disableCheckbox: true
+                    },
+                        {
+                            key: "0-0-1-1",
+                            title: "parent 1-2-1"
+                        }
+                    ]
+            }
+        ]
+    }
+];
+
 const Home: FunctionComponent<Props> = (props) => {
     return (
         <div className="common-iframe">
@@ -66,7 +100,24 @@ const Home: FunctionComponent<Props> = (props) => {
             {/*? <span>{props.currentMenu}</span>*/}
             {/*: <span>页面跑丢了,需要添加后续逻辑</span>*/}
             {/*}*/}
-            <ParaTable config={CONFIG}/>
+            {/*<ParaTable config={CONFIG}/>*/}
+            <br/>
+            {/* tree */}
+            <ParaTree
+                treeData={treeData}
+                defaultExpandAll={true}
+                checkable={true}
+            >
+                {/*<TreeNode title="123123 1" key="0-1">*/}
+                {/*<TreeNode title="fasdfad 1-0" key="0-1-1">*/}
+                {/*<TreeNode title="leaf" isLeaf/>*/}
+                {/*<TreeNode title="leaf"/>*/}
+                {/*</TreeNode>*/}
+                {/*<TreeNode title="parent 1-1">*/}
+                {/*<TreeNode title="leaf"/>*/}
+                {/*</TreeNode>*/}
+                {/*</TreeNode>*/}
+            </ParaTree>
         </div>
     );
 };

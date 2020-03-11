@@ -1,4 +1,4 @@
-import React, {FunctionComponent, useEffect, useCallback} from "react";
+import React, {FunctionComponent, useEffect, useCallback, Fragment} from "react";
 import clsx from "clsx";
 import {createStyles, lighten, makeStyles, Theme} from "@material-ui/core/styles";
 import Table from "@material-ui/core/Table";
@@ -45,7 +45,8 @@ interface OwnProps {
         ctx: string,
         params?: any,
         header: HeaderCell[],
-        columns?: Columns[]
+        columns?: Columns[],
+        externals?: Function
     },
     checkedAble?: boolean,
     sortedAble?: boolean,
@@ -424,29 +425,64 @@ const ParaTable: FunctionComponent<Props> = (props) => {
                                                     );
                                                 })
                                             : dataSource.list.map((row: any) => {
-                                                return (
-                                                    <TableRow
-                                                        hover
-                                                        onClick={event => handleClick(event, row.id)}
-                                                        tabIndex={-1}
-                                                        key={row.id}
-                                                    >
-                                                        {
-                                                            config.header.map((cells: any) => (
-                                                                <TableCell align={cells.numeric ? "right" : "left"}
-                                                                           key={cells.id}
-                                                                >
-                                                                    {row[cells["id"]]}
+                                                if (config.externals) {
+                                                    return (
+                                                        <Fragment key={row.id}>
+                                                            <TableRow
+                                                                hover
+                                                                onClick={event => handleClick(event, row.id)}
+                                                                tabIndex={-1}
+                                                                key={row.id}
+                                                            >
+                                                                {
+                                                                    config.header.map((cells: any) => (
+                                                                        <TableCell align={cells.numeric ? "right" : "left"}
+                                                                                   key={cells.id}
+                                                                        >
+                                                                            {row[cells["id"]]}
+                                                                        </TableCell>
+                                                                    ))
+                                                                }
+                                                                {
+                                                                    config.columns
+                                                                        ? renderColumns(config.columns, true, row)
+                                                                        : null
+                                                                }
+                                                            </TableRow>
+                                                            <TableRow>
+                                                                <TableCell colSpan={1}>
+                                                                    {
+                                                                        config.externals(row)
+                                                                    }
                                                                 </TableCell>
-                                                            ))
-                                                        }
-                                                        {
-                                                            config.columns
-                                                                ? renderColumns(config.columns, true, row)
-                                                                : null
-                                                        }
-                                                    </TableRow>
-                                                );
+                                                            </TableRow>
+                                                        </Fragment>
+                                                    );
+                                                } else {
+                                                    return (
+                                                        <TableRow
+                                                            hover
+                                                            onClick={event => handleClick(event, row.id)}
+                                                            tabIndex={-1}
+                                                            key={row.id}
+                                                        >
+                                                            {
+                                                                config.header.map((cells: any) => (
+                                                                    <TableCell align={cells.numeric ? "right" : "left"}
+                                                                               key={cells.id}
+                                                                    >
+                                                                        {row[cells["id"]]}
+                                                                    </TableCell>
+                                                                ))
+                                                            }
+                                                            {
+                                                                config.columns
+                                                                    ? renderColumns(config.columns, true, row)
+                                                                    : null
+                                                            }
+                                                        </TableRow>
+                                                    );
+                                                }
                                             })
                                     }
                                     {emptyRows > 0 && (
