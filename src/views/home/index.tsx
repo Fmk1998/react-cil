@@ -6,6 +6,8 @@ import Paper from "@material-ui/core/Paper";
 import Table from "@material-ui/core/Table";
 import Api from "../../config/api.config";
 import "./index.scss";
+import {TestUseAsync} from "../../utils/Hooks/useAsync";
+import {TestUseRouter} from "../../utils/Hooks/useRouter";
 
 interface OwnProps extends RouteComponentProps {
     currentMenu?: string
@@ -118,6 +120,11 @@ const Home: FunctionComponent<Props> = (props) => {
                 {/*</TreeNode>*/}
                 {/*</TreeNode>*/}
             </ParaTree>
+
+            <br/>
+            {/* hook */}
+            {TestUseAsync()}
+            {TestUseRouter()}
         </div>
     );
 };
