@@ -9,11 +9,11 @@ import {createMuiTheme} from "@material-ui/core/styles";
 import {ThemeProvider} from "@material-ui/styles";
 import blue from "@material-ui/core/colors/blue";
 /* @dynamic debug */
-import {Debugger} from 'para-lib';
+import {Debugger, Context} from 'para-lib';
 /* @dynamic end */
 declare let window: Window & { ParaWeb: any };
 /* @dynamic version */
-window.ParaWeb = {version: '0.1.0', env: 'dev', buildTime: '3/11/2020, 4:35:03 PM'}
+window.ParaWeb = {version: '0.1.0', env: 'dev', buildTime: '3/17/2020, 4:33:58 PM'}
 /* @dynamic end */
 
 const theme = createMuiTheme({

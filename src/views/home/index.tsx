@@ -67,26 +67,26 @@ const CONFIG = {
 
 const treeData = [
     {
-        key: "0-0",
-        title: "parent 1",
+        id: "0-0",
+        name: "parent 1",
         children: [
             {
-                key: "0-0-0",
-                title: "parent 1-1",
-                children: [{key: "0-0-0-0", title: "parent 1-1-0"}]
+                id: "0-0-0",
+                name: "parent 1-1",
+                children: [{id: "0-0-0-0", name: "parent 1-1-0"}]
             },
             {
-                key: "0-0-1",
-                title: "parent 1-2",
+                id: "0-0-1",
+                name: "parent 1-2",
                 children:
                     [{
-                        key: "0-0-1-0",
-                        title: "parent 1-2-0",
+                        id: "0-0-1-0",
+                        name: "parent 1-2-0",
                         disableCheckbox: true
                     },
                         {
-                            key: "0-0-1-1",
-                            title: "parent 1-2-1"
+                            id: "0-0-1-1",
+                            name: "parent 1-2-1"
                         }
                     ]
             }
@@ -109,6 +109,7 @@ const Home: FunctionComponent<Props> = (props) => {
                 treeData={treeData}
                 defaultExpandAll={true}
                 checkable={true}
+                replaceFields={{title: "name", key: "id"}}
             >
                 {/*<TreeNode title="123123 1" key="0-1">*/}
                 {/*<TreeNode title="fasdfad 1-0" key="0-1-1">*/}

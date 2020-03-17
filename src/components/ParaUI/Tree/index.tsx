@@ -37,6 +37,11 @@ interface OwnProps {
     prefixCls?: string;
     switcherIcon?: React.ReactElement<any>;
     blockNode?: boolean;
+    replaceFields?: {
+        title?: string | number,
+        children?: string,
+        key?: string | number
+    }
 }
 
 export interface ParaTreeNodeAttribute {
@@ -85,9 +90,23 @@ export const getPrefixCls = (suffixCls: string, customizePrefixCls?: string) => 
     return `para-${suffixCls}`;
 };
 
+export const updateTreeData = (value, replaceFields) => {
+    const defaultFields = {children: "children", title: "title", key: "key"};
+    const replaceField = {...defaultFields, ...replaceFields};
+    value.map(val => {
+        val["key"] = val[replaceField.key];
+        val["children"] = val[replaceField.children];
+        val["title"] = val[replaceField.title];
+        if (val.children) {
+            return updateTreeData(val.children, replaceFields);
+        }
+    });
+    return value;
+};
+
 const ParaTree: FunctionComponent<OwnProps> = (props) => {
     console.log("TreeProps", props);
-    const {
+    let {
         className,
         showLine,
         checkable,
@@ -96,7 +115,9 @@ const ParaTree: FunctionComponent<OwnProps> = (props) => {
         switcherIcon,
         blockNode,
         children,
-        direction
+        direction,
+        treeData,
+        replaceFields
     } = props;
 
     const prefixCls = getPrefixCls("tree", customizePrefixCls);
@@ -105,7 +126,10 @@ const ParaTree: FunctionComponent<OwnProps> = (props) => {
     const setTreeRef = (node: any) => {
         tree = node;
     };
-
+    if (treeData) {
+        treeData = updateTreeData(treeData, replaceFields);
+    }
+    console.log("treeData:", treeData);
     return (
         <Tree
             itemHeight={20}
@@ -121,6 +145,7 @@ const ParaTree: FunctionComponent<OwnProps> = (props) => {
             switcherIcon={(nodeProps: ParaTreeNodeProps) =>
                 renderSwitcherIcon(prefixCls, switcherIcon, showLine, nodeProps)
             }
+            treeData={treeData}
         >
             {children}
         </Tree>
