@@ -31,6 +31,7 @@ const DynamicRouter: FunctionComponent<Props> = () => {
             <Switch>
                 <Route exact path="/" component={lazyImport('home/index')}/>
                 <Route path="/editor" component={lazyImport('editor/codeEditor')}/>
+                <Route path="/richEditor" component={lazyImport('editor/richEditor')}/>
             </Switch>
         </Suspense>
     );

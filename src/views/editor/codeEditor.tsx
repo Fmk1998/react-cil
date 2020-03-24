@@ -1,12 +1,19 @@
-import React, { FunctionComponent } from 'react';
+import React, {FunctionComponent} from "react";
 import Editor from "../../components/ParaUI/Editor";
-interface OwnProps {}
+
+interface OwnProps {
+}
 
 type Props = OwnProps;
 
 const codeEditor: FunctionComponent<Props> = (props) => {
 
-  return (<Editor />);
+    return (
+        <div>
+            <span>chenxi</span>
+            <Editor/>
+        </div>
+    );
 };
 
 export default codeEditor;

@@ -5,43 +5,46 @@ import clsx from "clsx";
 import "./ParaTree.scss";
 import renderSwitcherIcon from "./iconUtil";
 
-interface OwnProps {
-    treeData?: any[],
-    defaultSelectedKeys?: any[],
-    defaultCheckedKeys?: any[],
-    defaultExpandedKeys?: any[],
-    selectedKeys?: any[],
-    checkedKeys?: any[],
-    checkStrictly?: boolean,
-    className?: string,
-    selectable?: boolean,
-    showLine?: boolean,
-    checkable?: boolean,
-    defaultExpandAll?: boolean,
-    defaultExpandParent?: boolean,
-    autoExpandParent?: boolean,
-    showIcon?: boolean,
-    icon?: Function,
-    onExpand?: Function,
-    onSelect?: Function,
-    onCheck?: Function,
-    draggable?: boolean,
-    onDragStart?: Function,
-    onDragEnter?: Function,
-    onDrop?: Function,
-    onDragOver?: Function,
-    onDragEnd?: Function,
-    onDragLeave?: Function,
-    multiple?: boolean,
+
+export interface ParaTreeProps {
+    treeData?: any[];
+    defaultSelectedKeys?: any[];
+    defaultCheckedKeys?: any[];
+    defaultExpandedKeys?: any[];
+    selectedKeys?: any[];
+    checkedKeys?: any[];
+    checkStrictly?: boolean;
+    className?: string;
+    selectable?: boolean;
+    showLine?: boolean;
+    checkable?: boolean;
+    defaultExpandAll?: boolean;
+    defaultExpandParent?: boolean;
+    autoExpandParent?: boolean;
+    showIcon?: boolean;
+    icon?: Function;
+    onExpand?: Function;
+    onSelect?: Function;
+    onCheck?: Function;
+    draggable?: boolean;
+    onDragStart?: Function;
+    onDragEnter?: Function;
+    onDrop?: Function;
+    onDragOver?: Function;
+    onDragEnd?: Function;
+    onDragLeave?: Function;
+    multiple?: boolean;
     direction?: "ltr" | "rtl";
     prefixCls?: string;
     switcherIcon?: React.ReactElement<any>;
     blockNode?: boolean;
     replaceFields?: {
-        title?: string | number,
-        children?: string,
+        title?: string | number;
+        children?: string;
         key?: string | number
-    }
+    };
+    onLoad?: Function;
+    loadData?: Function;
 }
 
 export interface ParaTreeNodeAttribute {
@@ -104,8 +107,8 @@ export const updateTreeData = (value, replaceFields) => {
     return value;
 };
 
-const ParaTree: FunctionComponent<OwnProps> = (props) => {
-    console.log("TreeProps", props);
+const ParaTree: FunctionComponent<ParaTreeProps> = (props) => {
+    // console.log("TreeProps", props);
     let {
         className,
         showLine,
@@ -129,7 +132,6 @@ const ParaTree: FunctionComponent<OwnProps> = (props) => {
     if (treeData) {
         treeData = updateTreeData(treeData, replaceFields);
     }
-    console.log("treeData:", treeData);
     return (
         <Tree
             itemHeight={20}

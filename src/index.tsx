@@ -13,7 +13,7 @@ import {Debugger, Context} from 'para-lib';
 /* @dynamic end */
 declare let window: Window & { ParaWeb: any };
 /* @dynamic version */
-window.ParaWeb = {version: '0.1.0', env: 'dev', buildTime: '3/18/2020, 2:37:17 PM'}
+window.ParaWeb = {version: '0.1.0', env: 'dev', buildTime: '3/23/2020, 2:40:55 PM'}
 /* @dynamic end */
 
 const theme = createMuiTheme({
