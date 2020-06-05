@@ -10,7 +10,7 @@ import {Debugger} from 'para-lib';
 /* @dynamic end */
 declare let window: Window & { ParaWeb: any };
 /* @dynamic version */
-window.ParaWeb = {version: '0.1.0', env: 'dev', buildTime: '3/10/2020, 11:59:58 AM'}
+window.ParaWeb = {version: '0.1.0', env: 'dev', buildTime: '2020-6-5 17:29:28'}
 /* @dynamic end */
 
 const init = async (debug: Array<string> = []) => {

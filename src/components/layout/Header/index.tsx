@@ -15,6 +15,7 @@ import {RoutesMapping} from "../../../routes.config";
 import {queryMenusAction} from "../../../store/actions/menuAction";
 import "./index.scss";
 import {sequlizeURL} from "../../../utils/echo";
+import SubRecuMenu from "../../SubRecuMenu";
 
 interface OwnProps extends RouteComponentProps {
     list?: Array<any>,
@@ -111,6 +112,46 @@ const Profile = () => {
     );
 };
 
+//中间菜单
+/*const SubRecuMenu = () => {
+
+    const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+
+    const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+        setAnchorEl(event.currentTarget);
+        props.history.push("/demo")
+    };
+
+    const handleClose = () => {
+        setAnchorEl(null);
+    };
+
+    return (
+        <div>
+            <Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick} style={{color: "#ffffff"}}>
+                MFA策略
+            </Button>
+            <Menu
+                anchorEl={anchorEl}
+                keepMounted
+                open={Boolean(anchorEl)}
+                onClose={handleClose}
+            >
+                <MenuItem onClick={handleClose}>认证设置</MenuItem>
+                <MenuItem onClick={handleClose}>登录因子</MenuItem>
+                <MenuItem onClick={handleClose}>基础策略设置</MenuItem>
+                <MenuItem onClick={handleClose}>常用IP</MenuItem>
+                <MenuItem onClick={handleClose}>网络策略</MenuItem>
+                <MenuItem onClick={handleClose}>账号策略</MenuItem>
+                <MenuItem onClick={handleClose}>日期策略</MenuItem>
+                <MenuItem onClick={handleClose}>多设备策略</MenuItem>
+                <MenuItem onClick={handleClose}>信任区</MenuItem>
+                <MenuItem onClick={handleClose}>隔离区区</MenuItem>
+            </Menu>
+        </div>
+    );
+};*/
+
 const Header: FunctionComponent<Props> = (props) => {
     const dispatch = useDispatch();
     let location = useLocation();
@@ -167,30 +208,42 @@ const Header: FunctionComponent<Props> = (props) => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
+    const [subMenu, setSubMenu] = useState([
+        {
+            name: "MFA策略",
+            children: [{name: "认证设置",url:"http://lin.paraview.in/snackbar/package/MFAAuthentication/",router:"/strategy/auth_level"}, {name: "登录因子",url:"http://lin.paraview.in/snackbar/package/MFALoginFactor",router:"/strategy/login_factor_setting"},  {name: "基础策略设置",url:"http://lin.paraview.in/snackbar/package/MFACommonEquipment",router:"/strategy/common_equipment"}, {name: "常用IP",url:"http://lin.paraview.in/snackbar/package/MFACommonIP",router:"/strategy/common_ip"}, {name: "网络策略",url:"http://lin.paraview.in/snackbar/package/MFANetworkIP",router:"/strategy/network_ip"}, {name: "账号策略",url:"http://lin.paraview.in/snackbar/package/MFAAccountStrategy",router:"/strategy/account_strategy"}, {name: "日期策略",url:"http://lin.paraview.in/snackbar/package/MFADateStrategy",router:"/strategy/date_strategy"}, {name: "多设备策略",url:"http://lin.paraview.in/snackbar/package/MFARiskRule",router:"/strategy/risk_rule"}, {name: "信任区",url:"http://lin.paraview.in/snackbar/package/MFATrustArea",router:"/strategy/trust_area"}, {name: "隔离区",url:"http://lin.paraview.in/snackbar/package/MFAQuarantineArea",router:"/strategy/quarantine_area"}]
+        }, {name: "审计管理", children: [{name: "管理员操作日志",url:"http://192.168.2.37:3000/d/pPnHp3jWz/guan-li-yuan-cao-zuo-ri-zhi?orgId=1&kiosk&from=now-30d&to=now-0d&refresh=5s",router:"/grafana/administrators_operation"}, {name: "消息通知日志",url:"http://192.168.2.37:3000/d/o2OEK3CZz/xiao-xi-tong-zhi-ji-lu?orgId=1&kiosk&from=now-30d&to=now-0d&refresh=5s",router:"/grafana/msg_notice"}, {name: "MFA登录日志",url:"http://192.168.2.37:3000/d/6YqIiqCZk/mfadeng-lu-ri-zhi?orgId=1&kiosk&from=now-30d&to=now-0d&refresh=5s",router:"/grafana/mfa_login"}, {name: "消息发送",url:"http://192.168.2.37:3000/d/o2OEK3CZz/xiao-xi-tong-zhi-ji-lu?orgId=1&kiosk&from=now-30d&to=now-0d&refresh=5s",router:"/grafana/msg_send"}]}
+])
+;
 
-    return (
-        <AppBar position="fixed" className="header">
-            <Toolbar>
-                <Typography variant="h5" className="header-logo">
-                    <img src={require("../../../assets/logo.png")} alt=""/>
-                    <span>{PROJECT}</span>
-                </Typography>
-                <div className={"header-menu"}>
-                    {props.list && props.list.map((value: any, index: number) => (
+return (
+    <AppBar position="fixed" className="header">
+        <Toolbar>
+            <Typography variant="h5" className="header-logo">
+                <img src={require("../../../assets/logo.png")} alt=""/>
+                <span>{PROJECT}</span>
+            </Typography>
+            <div className={"header-menu"}>
+                {/*{props.list && props.list.map((value: any, index: number) => (
                         value[RoutesMapping.path] !== "/"
                             ? <Button key={index} style={{color: "#fff"}}
                                       onClick={openNewPage(value)}>{value[RoutesMapping.name]}</Button>
                             : null
-                    ))}
-                </div>
-                <div className="header-right">
-                    <Language/>
-                    <Profile/>
-                </div>
-            </Toolbar>
-        </AppBar>
-    );
-};
+                    ))}*/}
+
+                {subMenu.map((value: any, index: number) =>
+                    <SubRecuMenu item={value}/>
+                )}
+            </div>
+            <div className="header-right">
+                <Language/>
+                <Profile/>
+            </div>
+        </Toolbar>
+    </AppBar>
+);
+}
+;
 export default withRouter(connect(mapStateToProps, null)(Header));
 
 

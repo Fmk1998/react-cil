@@ -51,7 +51,6 @@ const App: FunctionComponent<Props> = ({history, language}: Props) => {
                             <div className="App">
                                 <Loading/>
                                 <Header/>
-                                <SlideBar sideList={[]}/>
                                 <Main/>
                             </div>
                         </MuiThemeProvider>

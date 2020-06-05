@@ -30,9 +30,11 @@ const DynamicRouter: FunctionComponent<Props> = (props) => {
     return (
         <Fragment>
             <Suspense fallback={Loading}>
-                <ConnectedRouter history={history}>
                     <Switch>
                         <Route exact path="/" component={lazyImport("home/index")}/>
+                        <Route  path="/strategy" component={lazyImport("strategy/index")}/>
+                        <Route  path="/grafana" component={lazyImport("grafana/index")}/>
+
                         {/*{*/}
                         {/*props.list?.map((value: any, index: number) => (*/}
                         {/*<Route key={index} path={value[RoutesMapping.url]}*/}
@@ -40,7 +42,6 @@ const DynamicRouter: FunctionComponent<Props> = (props) => {
                         {/*))*/}
                         {/*}*/}
                     </Switch>
-                </ConnectedRouter>
             </Suspense>
         </Fragment>
     );
