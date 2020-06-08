@@ -13,7 +13,7 @@ const persistConfig = {
     key: PROJECTEND,
     storage,
     blacklist: ["_persist"], // 黑名单
-    whitelist: ["setting"] // 白名单
+    whitelist: ["setting","menu"] // 白名单
 };
 export const history = createBrowserHistory();
 

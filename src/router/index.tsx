@@ -30,18 +30,20 @@ const DynamicRouter: FunctionComponent<Props> = (props) => {
     return (
         <Fragment>
             <Suspense fallback={Loading}>
-                    <Switch>
-                        <Route exact path="/" component={lazyImport("home/index")}/>
-                        <Route  path="/strategy" component={lazyImport("strategy/index")}/>
-                        <Route  path="/grafana" component={lazyImport("grafana/index")}/>
+                <Switch>
+                    <Route exact path="/" component={lazyImport("home/index")}/>
+                    <Route path="/strategy" component={lazyImport("strategy/index")}/>
+                    {/*<Route exact path="/strategy/auth_level" component={lazyImport("strategy/index")}/>
+                        <Route exact path="/strategy/login_factor_setting" component={lazyImport("strategy/index")}/>*/}
+                    <Route path="/grafana" component={lazyImport("grafana/index")}/>
 
-                        {/*{*/}
-                        {/*props.list?.map((value: any, index: number) => (*/}
-                        {/*<Route key={index} path={value[RoutesMapping.url]}*/}
-                        {/*component={lazyImport('home/index')}/>*/}
-                        {/*))*/}
-                        {/*}*/}
-                    </Switch>
+                    {/*{*/}
+                    {/*props.list?.map((value: any, index: number) => (*/}
+                    {/*<Route key={index} path={value[RoutesMapping.url]}*/}
+                    {/*component={lazyImport('home/index')}/>*/}
+                    {/*))*/}
+                    {/*}*/}
+                </Switch>
             </Suspense>
         </Fragment>
     );
